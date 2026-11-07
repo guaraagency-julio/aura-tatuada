@@ -34,37 +34,39 @@
   }
 
 
-// Miniatura em profundidade sobre a FOTO DA JANELA, sem tapar o cenário.
+// Carrossel em profundidade: o cenário da janela permanece visível.
 const gallery = document.querySelector('.window-gallery');
 const slides = [...document.querySelectorAll('.gallery-slide')];
-const count = document.querySelector('#gallery-count');
-const prev = document.querySelector('#gallery-prev');
-const next = document.querySelector('#gallery-next');
+const indicators = [...document.querySelectorAll('.gallery-dot')];
+const galleryStatus = document.querySelector('#gallery-status');
 let current = 0, autoplay = null, galleryVisible = false, userPaused = false, pointer = null;
-const pad = n => String(n).padStart(2, '0');
-const mod = (n, count) => (n % count + count) % count;
+const mod = (n,m) => ((n % m) + m) % m;
 function stopAutoplay(){ if(autoplay!==null){ clearInterval(autoplay); autoplay=null; } }
-function showSlide(index, manual = false){
-  if(!slides.length) return;
-  current=mod(index,slides.length);
-  const before=mod(current-1,slides.length);
-  const after=mod(current+1,slides.length);
+function showSlide(target, manual=false){
+  if(!slides.length)return;
+  current=mod(target, slides.length);
   slides.forEach((slide,i)=>{
-    slide.classList.remove('is-active','is-left','is-right','is-back');
-    const active=i===current;
-    slide.classList.add(active?'is-active':i===before?'is-left':i===after?'is-right':'is-back');
-    slide.setAttribute('aria-hidden',String(!active));
-    slide.inert=!active;
+    const distance=mod(i-current,slides.length);
+    slide.classList.remove('is-active','is-next','is-next2','is-next3');
+    slide.classList.add(['is-active','is-next','is-next2','is-next3'][distance]||'is-next3');
+    if(i===current)slide.setAttribute('aria-current','true'); else slide.removeAttribute('aria-current');
   });
-  if(count) count.innerHTML=`${pad(current+1)} <span>/</span> ${pad(slides.length)}`;
+  indicators.forEach((dot,i)=>{
+    dot.classList.toggle('is-active',i===current);
+    if(i===current)dot.setAttribute('aria-current','true'); else dot.removeAttribute('aria-current');
+  });
+  if(galleryStatus)galleryStatus.textContent=`${slides[current].dataset.name}, trabalho ${current+1} de ${slides.length}`;
   if(manual){userPaused=true;stopAutoplay();}
 }
 function startAutoplay(){
   if(reducedMedia.matches||userPaused||!galleryVisible||document.hidden||autoplay!==null||slides.length<2)return;
   autoplay=setInterval(()=>showSlide(current+1),6500);
 }
-prev?.addEventListener('click',()=>showSlide(current-1,true));
-next?.addEventListener('click',()=>showSlide(current+1,true));
+slides.forEach((slide,i)=>slide.addEventListener('click',()=>{
+  // Clicar no principal avança; clicar em qualquer card traseiro o traz à frente.
+  showSlide(i===current ? current+1 : i,true);
+}));
+indicators.forEach((dot,i)=>dot.addEventListener('click',()=>showSlide(i,true)));
 gallery?.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'){e.preventDefault();showSlide(current+1,true);}
   if(e.key==='ArrowLeft'){e.preventDefault();showSlide(current-1,true);}
@@ -76,7 +78,7 @@ gallery?.addEventListener('pointerdown',e=>{
 gallery?.addEventListener('pointerup',e=>{
   if(!pointer||pointer.id!==e.pointerId)return;
   const dx=e.clientX-pointer.x,dy=e.clientY-pointer.y;
-  if(Math.abs(dx)>42&&Math.abs(dx)>Math.abs(dy)*1.3)showSlide(current+(dx<0?1:-1),true);
+  if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.3)showSlide(current+(dx<0?1:-1),true);
   pointer=null;
 });
 gallery?.addEventListener('pointercancel',()=>{pointer=null;});
@@ -107,10 +109,10 @@ showSlide(0);
   const mix = (a, b, t) => a + (b - a) * t;
   const zoneMap = [
     { section: '.hero', factor: .49, x: .83, y: .62, tone: 'light' },
-    { section: '.portfolio-section', factor: .36, x: .14, y: .36, tone: 'dark' },
-    { section: '.artist-section', factor: .41, x: .83, y: .56, tone: 'light' },
-    { section: '.studio-section', factor: .39, x: .14, y: .38, tone: 'dark' },
-    { section: '.contact-section', factor: .33, x: .83, y: .59, tone: 'light' },
+    { section: '.portfolio-section', factor: .36, x: .14, y: .36, tone: 'light' },
+    { section: '.artist-section', factor: .41, x: .83, y: .56, tone: 'dark' },
+    { section: '.studio-section', factor: .39, x: .14, y: .38, tone: 'light' },
+    { section: '.contact-section', factor: .33, x: .83, y: .59, tone: 'dark' },
     { section: '.footer', factor: .95, x: .87, y: .82, tone: 'light' }
   ];
   function collectPoints() {
