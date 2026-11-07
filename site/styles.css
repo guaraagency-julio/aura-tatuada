@@ -97,3 +97,83 @@ body.motion-ready .lace-path{stroke-dashoffset:calc(1000 * (1 - var(--lace-progr
 @media(max-width:560px){html{scroll-padding-top:80px}.container,.container-wide{width:calc(100% - 38px)}.fringe-framing{height:47px}.header-row{height:103px;padding-top:25px}.brand{min-width:119px}.brand-name{font-size:44px}.brand-star{width:18px;height:18px;top:-13px;left:53px}.brand-caption{font-size:7px;letter-spacing:.34em;margin-top:8px}.instagram-link{width:44px}.hero{min-height:max(670px,100svh)}.hero-photo{object-position:87% center}.hero-vignette{background:linear-gradient(90deg,rgba(17,21,12,.8),rgba(17,21,12,.48) 80%),linear-gradient(0deg,rgba(15,18,12,.67),transparent 43%)}.hero-content{padding-top:140px;padding-bottom:110px}.hero h1{font-size:clamp(4.4rem,17vw,6.7rem);margin-top:28px}.hero-lead{font-size:15px;max-width:370px;line-height:1.65}.hero-commands{margin-top:29px}.micro-hint{display:none}.hero-bottom{font-size:8px}.hero-bottom span:first-child{max-width:150px}.hero-bottom a{text-align:right}.portfolio-section,.artist-section,.studio-section{padding-block:83px}.portfolio-layout,.artist-layout,.studio-layout{gap:44px}.window-gallery{height:min(120vw,575px);border-width:10px}.window-interior{inset:8% 9% 16%}.window-frame{border-width:4px}.frame-vertical{width:7px}.frame-horizontal{height:7px}.gallery-controls{bottom:8px;padding:2px 3px}.gallery-arrow{width:44px;height:44px}.gallery-count{min-width:55px}.portfolio-text h2,.artist-intro h2,.studio-intro h2{font-size:clamp(4.4rem,13.1vw,6rem)}.section-description{font-size:15px;line-height:1.75}.portfolio-small-photo{width:68%}.artist-intro .kicker{margin-top:42px}.artist-image{width:92%}.artist-image figcaption{font-size:9px;left:-13px;padding:13px 14px}.studio-photo{margin-top:36px}.studio-location{margin-top:4px}.location-header h3{font-size:37px}.map-concept{height:290px}.location-caption{align-items:start}.location-pending{font-size:8px}.contact-section{padding-block:95px}.contact-center h2{font-size:clamp(4.25rem,13.5vw,6rem)}.footer{padding-top:55px}.footer-content{display:block}.footer-brand{font-size:74px}.footer nav{margin-top:34px;justify-content:flex-start}.footer-credits{flex-direction:column;gap:12px;margin-top:28px;padding:25px 0}.lace-rail{height:75px}.foliage-portfolio{left:-168px}.foliage-studio{left:-245px;opacity:.12}}
 @media(max-width:370px){.hero h1{font-size:4.2rem}.window-gallery{height:425px}.gallery-footnote{line-height:1.7}.brand-name{font-size:40px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll-star{display:none!important}.brand-star{opacity:1!important}.fringe-framing,.foliage{transform:none!important}.gallery-slide{transition:opacity .15s linear;transform:none!important}.lace-path{stroke-dashoffset:0!important}.button,.underlined-link,.gallery-arrow,.nav-cta{transition:background .15s linear,color .15s linear}}
+
+
+/* === AJUSTES DE PROPORÇÃO / VERSÃO CORRIGIDA ===
+   Cabeçalho e ornamento superior retomados da primeira versão aprovada.
+   Fotos de conteúdo nunca têm altura arbitrária: proporção original preservada.
+*/
+img{max-width:100%;}
+/* A faixa botânica está presente em toda a largura do cabeçalho, sem "tufo" lateral. */
+.fringe-framing{left:0;right:0;top:0;width:100%;height:62px;position:absolute;overflow:hidden;pointer-events:none;}
+.fringe-framing img{width:100%;height:100%;object-fit:fill;object-position:center top;}
+
+/* Janela: foto vertical inteira, sem frame, sem overlay opaco, sem crop. */
+.portfolio-visual{max-width:470px;justify-self:center;width:100%;}
+.window-gallery{width:min(100%,420px);height:auto;aspect-ratio:3/4;margin:23px auto 0;border:0;background:transparent;box-shadow:0 20px 48px rgba(20,27,16,.16);overflow:hidden;isolation:isolate;touch-action:pan-y;}
+.window-scene{position:absolute;inset:0;z-index:0;}
+.window-scene img{width:100%;height:100%;object-fit:contain;object-position:center;opacity:1;filter:none;}
+.window-scene:after{content:none!important;}
+.gallery-track{position:absolute;inset:0;display:block;z-index:2;pointer-events:none;}
+.gallery-slide{position:absolute;inset:auto;left:50%;top:64%;width:116px;height:auto;max-width:29%;padding:5px 5px 0;border:1px solid rgba(225,211,181,.65);background:#efe6d6;box-shadow:0 9px 24px rgba(13,20,12,.30);opacity:0;pointer-events:none;transform-origin:center;transition:opacity .32s ease,transform .62s cubic-bezier(.16,1,.3,1);}
+.gallery-slide img{width:100%;height:112px;aspect-ratio:1/1;object-fit:contain;object-position:center;background:#ddd2c0;}
+.gallery-slide figcaption{position:static;inset:auto;background:none;color:#293020;letter-spacing:.10em;font-size:8px;text-align:center;padding:9px 3px 8px;font-weight:700;}
+.gallery-slide.is-active{z-index:6;opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:none;}
+.gallery-slide.is-left{z-index:4;opacity:.9;transform:translate(calc(-50% - 112px),-44%) rotate(-7deg) scale(.79);}
+.gallery-slide.is-right{z-index:4;opacity:.9;transform:translate(calc(-50% + 112px),-44%) rotate(7deg) scale(.79);}
+.gallery-slide.is-back{z-index:3;opacity:.01;transform:translate(-50%,-30%) scale(.5);}
+.gallery-controls{position:absolute;z-index:7;bottom:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;border:0;border-radius:30px;padding:4px 7px;background:rgba(239,232,218,.94);box-shadow:0 5px 22px rgba(20,25,18,.20);white-space:nowrap;}
+.gallery-arrow{min-width:42px;min-height:42px;border-radius:50%;}
+.gallery-footnote{line-height:1.6;max-width:420px;margin-inline:auto;}
+/* Limites para fotos complementares: miniaturas reais e sem distorção. */
+.portfolio-small-photo{width:min(190px,48%);margin:34px auto 0;}
+.portfolio-small-photo img{display:block;width:100%;height:auto;max-height:190px;object-fit:contain;aspect-ratio:auto;}
+.artist-image{width:min(100%,330px)!important;margin-inline:auto;}
+.artist-image img{width:100%;height:auto;aspect-ratio:auto;max-height:none;object-fit:contain;}
+.artist-image figcaption{left:-14px;bottom:14px;max-width:calc(100% + 14px);}
+.studio-photo{width:min(100%,345px);margin-top:38px;}
+.studio-photo img{width:100%;height:auto;aspect-ratio:auto;max-height:none;object-fit:contain;}
+/* Capacidade de leitura da seção: nenhum bloco fotográfico domina a coluna. */
+.portfolio-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(54px,8vw,110px);}
+.artist-layout{grid-template-columns:minmax(0,1fr) minmax(0,.82fr);}
+
+/* Cadarço repetido como textura no próprio fundo do rodapé. Sem faixa independente. */
+.footer{position:relative;isolation:isolate;padding-bottom:50px;overflow:hidden;background-color:var(--olive-900);}
+.footer:before{content:"";position:absolute;inset:0;background-image:url('./assets/cadarco-fundo.svg');background-repeat:repeat;background-position:center;background-size:360px 176px;opacity:.11;z-index:-1;pointer-events:none;}
+.footer-content,.footer-credits{position:relative;z-index:1;}
+.lace-rail{display:none!important;}
+
+@media(max-width:1100px){
+ .portfolio-layout,.artist-layout{grid-template-columns:1fr;gap:44px;}
+ .portfolio-visual{max-width:430px;}
+ .portfolio-text{max-width:560px;margin-inline:auto;}
+ .artist-image{margin-inline:auto;}
+}
+@media(max-width:560px){
+ .fringe-framing{height:47px;}
+ .window-gallery{width:min(100%,320px);aspect-ratio:3/4;}
+ .gallery-slide{width:90px;max-width:30%;padding:4px 4px 0;}
+ .gallery-slide img{height:86px;}
+ .gallery-slide figcaption{font-size:7px;padding:6px 1px;}
+ .gallery-slide.is-left{transform:translate(calc(-50% - 76px),-43%) rotate(-7deg) scale(.78);}
+ .gallery-slide.is-right{transform:translate(calc(-50% + 76px),-43%) rotate(7deg) scale(.78);}
+ .gallery-controls{bottom:7px;padding:3px 5px;}
+ .gallery-arrow{width:44px;height:44px;}
+ .portfolio-small-photo{width:min(150px,47%);}
+ .artist-image{width:min(100%,290px)!important;}
+ .studio-photo{width:min(100%,300px);}
+ .footer{padding-bottom:35px;}
+ .footer:before{background-size:260px 128px;opacity:.09;}
+}
+@media(prefers-reduced-motion:reduce){
+ .gallery-slide{transition:none!important;}
+}
+/* Reserva de proporção para impedir salto de layout com imagens lazy loaded. */
+.artist-image{aspect-ratio:3/4;overflow:visible;}
+.artist-image img{display:block;width:100%;height:100%;aspect-ratio:3/4;object-fit:contain;object-position:center;}
+.studio-photo{aspect-ratio:4/5;overflow:hidden;}
+.studio-photo img{display:block;width:100%;height:100%;aspect-ratio:4/5;object-fit:contain;object-position:center;}
+.portfolio-small-photo img{width:100%;aspect-ratio:3/4;object-fit:contain;}
+/* Background fotográfico de segurança, com enquadramento inteiro, para renderizações lentas. */
+.artist-image{background:#3d412e url('./assets/camila-retrato.webp') center center / contain no-repeat;}
+.studio-photo{background:#e8dfcf url('./assets/estudio-detalhe.webp') center center / contain no-repeat;}

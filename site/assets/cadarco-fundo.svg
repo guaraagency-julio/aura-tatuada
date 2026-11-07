@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="176" viewBox="0 0 360 176">
+<defs><pattern id="corda" width="72" height="88" patternUnits="userSpaceOnUse">
+<g fill="none" stroke="#e9ddc9" stroke-linecap="round" stroke-linejoin="round">
+<path d="M0 11L72 77M72 11L0 77" stroke-width="4"/>
+<path d="M0 77L72 11M72 77L0 11" stroke-width="1.4" opacity=".38"/>
+<circle cx="0" cy="11" r="6.5" stroke-width="2"/><circle cx="72" cy="11" r="6.5" stroke-width="2"/>
+<circle cx="0" cy="77" r="6.5" stroke-width="2"/><circle cx="72" cy="77" r="6.5" stroke-width="2"/>
+</g></pattern></defs><rect width="360" height="176" fill="url(#corda)"/>
+</svg>

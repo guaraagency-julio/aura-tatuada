@@ -33,67 +33,66 @@
     window.matchMedia('(min-width: 821px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
   }
 
-  // Framed tattoo gallery: accessible previous/next, touch swipes and keyboard controls.
-  const gallery = document.querySelector('.window-gallery');
-  const slides = [...document.querySelectorAll('.gallery-slide')];
-  const count = document.querySelector('#gallery-count');
-  const prev = document.querySelector('#gallery-prev');
-  const next = document.querySelector('#gallery-next');
-  let current = 0;
-  let autoplay = null;
-  let galleryVisible = false;
-  let userPaused = false;
-  let activePointer = null;
-  const pad = n => String(n).padStart(2, '0');
-  function stopAutoplay() { if (autoplay !== null) { clearInterval(autoplay); autoplay = null; } }
-  function showSlide(index, manual = false) {
-    if (!slides.length) return;
-    current = (index + slides.length) % slides.length;
-    slides.forEach((slide, i) => {
-      const active = i === current;
-      slide.classList.toggle('is-active', active);
-      slide.setAttribute('aria-hidden', String(!active));
-      slide.inert = !active;
-    });
-    if (count) count.innerHTML = `${pad(current + 1)} <span>/</span> ${pad(slides.length)}`;
-    if (manual) { userPaused = true; stopAutoplay(); }
-  }
-  function startAutoplay() {
-    if (reducedMedia.matches || userPaused || !galleryVisible || document.hidden || autoplay !== null || slides.length < 2) return;
-    autoplay = window.setInterval(() => showSlide(current + 1), 6200);
-  }
-  prev?.addEventListener('click', () => showSlide(current - 1, true));
-  next?.addEventListener('click', () => showSlide(current + 1, true));
-  gallery?.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); showSlide(current + 1, true); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); showSlide(current - 1, true); }
+
+// Miniatura em profundidade sobre a FOTO DA JANELA, sem tapar o cenário.
+const gallery = document.querySelector('.window-gallery');
+const slides = [...document.querySelectorAll('.gallery-slide')];
+const count = document.querySelector('#gallery-count');
+const prev = document.querySelector('#gallery-prev');
+const next = document.querySelector('#gallery-next');
+let current = 0, autoplay = null, galleryVisible = false, userPaused = false, pointer = null;
+const pad = n => String(n).padStart(2, '0');
+const mod = (n, count) => (n % count + count) % count;
+function stopAutoplay(){ if(autoplay!==null){ clearInterval(autoplay); autoplay=null; } }
+function showSlide(index, manual = false){
+  if(!slides.length) return;
+  current=mod(index,slides.length);
+  const before=mod(current-1,slides.length);
+  const after=mod(current+1,slides.length);
+  slides.forEach((slide,i)=>{
+    slide.classList.remove('is-active','is-left','is-right','is-back');
+    const active=i===current;
+    slide.classList.add(active?'is-active':i===before?'is-left':i===after?'is-right':'is-back');
+    slide.setAttribute('aria-hidden',String(!active));
+    slide.inert=!active;
   });
-  gallery?.addEventListener('pointerdown', e => {
-    if (e.target.closest('button, a')) return;
-    activePointer = { id: e.pointerId, x: e.clientX, y: e.clientY };
-  });
-  gallery?.addEventListener('pointerup', e => {
-    if (!activePointer || e.pointerId !== activePointer.id) return;
-    const dx = e.clientX - activePointer.x;
-    const dy = e.clientY - activePointer.y;
-    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.3) showSlide(current + (dx < 0 ? 1 : -1), true);
-    activePointer = null;
-  });
-  gallery?.addEventListener('pointercancel', () => { activePointer = null; });
-  window.addEventListener('blur', () => { activePointer = null; stopAutoplay(); });
-  gallery?.addEventListener('mouseenter', stopAutoplay);
-  gallery?.addEventListener('mouseleave', startAutoplay);
-  gallery?.addEventListener('focusin', stopAutoplay);
-  gallery?.addEventListener('focusout', e => { if (!gallery.contains(e.relatedTarget)) startAutoplay(); });
-  document.addEventListener('visibilitychange', () => document.hidden ? stopAutoplay() : startAutoplay());
-  if ('IntersectionObserver' in window && gallery) {
-    const observer = new IntersectionObserver(entries => {
-      galleryVisible = entries[0].isIntersecting;
-      if (galleryVisible) startAutoplay(); else stopAutoplay();
-    }, { threshold: .42 });
-    observer.observe(gallery);
-  }
-  showSlide(0);
+  if(count) count.innerHTML=`${pad(current+1)} <span>/</span> ${pad(slides.length)}`;
+  if(manual){userPaused=true;stopAutoplay();}
+}
+function startAutoplay(){
+  if(reducedMedia.matches||userPaused||!galleryVisible||document.hidden||autoplay!==null||slides.length<2)return;
+  autoplay=setInterval(()=>showSlide(current+1),6500);
+}
+prev?.addEventListener('click',()=>showSlide(current-1,true));
+next?.addEventListener('click',()=>showSlide(current+1,true));
+gallery?.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){e.preventDefault();showSlide(current+1,true);}
+  if(e.key==='ArrowLeft'){e.preventDefault();showSlide(current-1,true);}
+});
+gallery?.addEventListener('pointerdown',e=>{
+  if(e.target.closest('button,a'))return;
+  pointer={id:e.pointerId,x:e.clientX,y:e.clientY};
+});
+gallery?.addEventListener('pointerup',e=>{
+  if(!pointer||pointer.id!==e.pointerId)return;
+  const dx=e.clientX-pointer.x,dy=e.clientY-pointer.y;
+  if(Math.abs(dx)>42&&Math.abs(dx)>Math.abs(dy)*1.3)showSlide(current+(dx<0?1:-1),true);
+  pointer=null;
+});
+gallery?.addEventListener('pointercancel',()=>{pointer=null;});
+gallery?.addEventListener('mouseenter',stopAutoplay);
+gallery?.addEventListener('mouseleave',startAutoplay);
+gallery?.addEventListener('focusin',stopAutoplay);
+gallery?.addEventListener('focusout',e=>{if(!gallery.contains(e.relatedTarget))startAutoplay();});
+document.addEventListener('visibilitychange',()=>document.hidden?stopAutoplay():startAutoplay());
+window.addEventListener('blur',()=>{pointer=null;stopAutoplay();});
+if('IntersectionObserver' in window&&gallery){
+  const io=new IntersectionObserver(entries=>{
+    galleryVisible=entries[0].isIntersecting;
+    galleryVisible?startAutoplay():stopAutoplay();
+  },{threshold:.3});io.observe(gallery);
+}
+showSlide(0);
 
   // Progress-linked four-point mark. Anchors are recomputed at resize/content changes.
   const star = document.querySelector('.scroll-star');
