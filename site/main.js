@@ -210,6 +210,7 @@ renderCategory('botanica');
       star.style.opacity = scroll < 26 ? '0' : '1';
       star.style.transform = `translate3d(${(x - size / 2).toFixed(1)}px,${(y - size / 2).toFixed(1)}px,0) rotate(${(scroll * .05).toFixed(1)}deg)`;
       star.dataset.tone = t < .5 ? a.tone : b.tone;
+      window.dispatchEvent(new CustomEvent('aura:star-position', {detail:{x,y,visible:scroll >= 26}}));
     }
     // Only three inexpensive decorative elements. Read all geometry before writing styles.
     const plantStates = botanicals.map(el => {
