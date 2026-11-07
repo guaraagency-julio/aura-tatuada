@@ -16,10 +16,14 @@
   <link rel="stylesheet" href="./light-system.css">
   <link rel="stylesheet" href="./hero-scene.css">
   <link rel="stylesheet" href="./title-relief.css">
+  <link rel="stylesheet" href="./studio-panel.css">
+  <link rel="stylesheet" href="./interactive-relief.css">
   <script src="./main.js" defer></script>
   <script src="./light-system.js" defer></script>
   <script src="./hero-scene.js" defer></script>
   <script src="./title-relief.js" defer></script>
+  <script src="./studio-panel.js" defer></script>
+  <script src="./interactive-relief.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -141,12 +145,31 @@
           <p class="section-description">Plantas, tons naturais, luz suave e um espaço pensado para receber você. Conheça um pouco do Aura Tatuada Studio.</p>
         </div>
         <div class="studio-location" id="localizacao">
-          <p class="microcopy">04 <span class="slash">/</span> VENHA CONHECER</p>
-          <div class="location-header"><h3>Onde a arte acontece.</h3><span aria-hidden="true">↗</span></div>
-          <div class="map-embed">
-            <iframe title="Mapa do Aura Tatuada Studio — Rua Joaquim Nabuco, 1044, Centro, Novo Hamburgo" src="https://maps.google.com/maps?q=R.%20Joaquim%20Nabuco%2C%201044%2C%20Centro%2C%20Novo%20Hamburgo%2C%20RS%2C%2093310-002&amp;z=16&amp;output=embed" width="600" height="380" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <p class="microcopy">04 <span class="slash">/</span> CONHEÇA O AURA</p>
+          <div class="studio-tablist" role="tablist" aria-label="Explorar o estúdio">
+            <button class="studio-tab is-active" id="studio-tab-como" type="button" role="tab" aria-selected="true" aria-controls="studio-panel-como" tabindex="0" data-studio-tab="como">Como é</button>
+            <button class="studio-tab" id="studio-tab-onde" type="button" role="tab" aria-selected="false" aria-controls="studio-panel-onde" tabindex="-1" data-studio-tab="onde">Onde é</button>
           </div>
-          <div class="location-caption"><span><strong>Aura Tatuada Studio</strong><small>R. Joaquim Nabuco, 1044 — Centro · Novo Hamburgo/RS</small></span><a class="location-route" href="https://www.google.com/maps/search/?api=1&amp;query=R.+Joaquim+Nabuco%2C+1044%2C+Centro%2C+Novo+Hamburgo%2C+RS" target="_blank" rel="noopener noreferrer">ABRIR ROTAS ↗</a></div>
+          <div class="location-header"><h3 id="studio-view-heading">Por dentro do Aura.</h3><span aria-hidden="true">✳</span></div>
+          <div class="studio-tabpanel" id="studio-panel-como" role="tabpanel" aria-labelledby="studio-tab-como" tabindex="0">
+            <div class="studio-gallery" aria-roledescription="carrossel" aria-label="Fotografias do interior do estúdio">
+              <div class="studio-photo-stage" id="studio-photo-stage">
+                <button class="studio-photo-next" id="studio-photo-next" type="button" aria-label="Ver a próxima fotografia do estúdio">
+                  <img id="studio-photo" src="./assets/studio/studio-09.webp" alt="Interior do Aura Tatuada Studio iluminado pela luz natural, com a marca na parede verde" width="1080" height="1350" loading="lazy" decoding="async">
+                  <span class="studio-photo-hint" aria-hidden="true">PRÓXIMA FOTO ↗</span>
+                </button>
+              </div>
+              <p class="studio-photo-caption" id="studio-photo-caption">A luz natural e o espaço de atendimento.</p>
+              <div class="studio-photo-dots" id="studio-photo-dots" role="group" aria-label="Selecionar fotografia do estúdio"></div>
+              <span class="sr-only" id="studio-photo-status" role="status" aria-live="polite" aria-atomic="true">Fotografia 1 de 11.</span>
+            </div>
+          </div>
+          <div class="studio-tabpanel" id="studio-panel-onde" role="tabpanel" aria-labelledby="studio-tab-onde" tabindex="0" hidden>
+            <div class="map-embed">
+              <iframe title="Mapa do Aura Tatuada Studio — Rua Joaquim Nabuco, 1044, Centro, Novo Hamburgo" data-src="https://maps.google.com/maps?q=R.%20Joaquim%20Nabuco%2C%201044%2C%20Centro%2C%20Novo%20Hamburgo%2C%20RS%2C%2093310-002&amp;z=16&amp;output=embed" width="600" height="380" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            </div>
+            <div class="location-caption"><span><strong>Aura Tatuada Studio</strong><small>R. Joaquim Nabuco, 1044 — Centro · Novo Hamburgo/RS</small></span><a class="location-route" href="https://www.google.com/maps/search/?api=1&amp;query=R.+Joaquim+Nabuco%2C+1044%2C+Centro%2C+Novo+Hamburgo%2C+RS" target="_blank" rel="noopener noreferrer">ABRIR ROTAS ↗</a></div>
+          </div>
         </div>
       </div>
     </section>

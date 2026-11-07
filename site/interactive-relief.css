@@ -1,0 +1,20 @@
+/* Aura / relevo nas superfícies e controles clicáveis.
+   Luz vinculada à mesma posição da estrela, sem layout shifts. */
+.aura-ux-pressable{--aura-ux-shadow:0px 2px 3px rgba(15,20,12,.18)}
+.aura-ux-pressable:focus-visible{outline-offset:4px}
+.aura-ux-surface{--aura-ux-panel-shadow:0 11px 27px rgba(12,20,9,.14)}
+body.aura-lux-on .aura-ux-pressable:not(.gallery-slide):not(.studio-photo-next){
+  filter:drop-shadow(var(--aura-ux-shadow));transition:filter .13s linear}
+body.aura-lux-on .aura-ux-pressable.aura-ux-near{ 
+  text-shadow:var(--aura-ux-text-shadow,0 1px 1px rgba(0,0,0,.12))}
+body.aura-lux-on .aura-ux-surface{
+  box-shadow:var(--aura-ux-panel-shadow);transition:box-shadow .13s linear}
+body.aura-lux-on .studio-photo-stage.aura-ux-surface{
+  box-shadow:var(--aura-ux-panel-shadow)}
+@media(prefers-reduced-motion:reduce){
+  body.aura-lux-on .aura-ux-pressable,
+  body.aura-lux-on .aura-ux-surface{
+    transition:none!important;
+    filter:none!important;
+    text-shadow:none!important}
+}
