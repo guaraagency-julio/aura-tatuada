@@ -1,0 +1,43 @@
+/* Valida layout real do portfólio no Chromium (desktop, notebook, tablet e celular). */
+const assert=require('node:assert/strict');
+const {chromium}=require('playwright');
+(async()=>{
+ const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ try{
+  for(const width of [1792,1536,1366,1024,821,820,390,320]){
+   const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});
+   await page.goto('http://127.0.0.1:8765/#portfolio',{waitUntil:'domcontentloaded'});
+   await page.locator('.portfolio-text').waitFor();
+   const state=await page.evaluate(()=>{
+    const l=document.querySelector('.portfolio-layout');
+    const v=document.querySelector('.portfolio-visual');
+    const t=document.querySelector('.portfolio-text');
+    const get=r=>{const b=r.getBoundingClientRect();return {x:b.x,y:b.y,right:b.right,bottom:b.bottom,width:b.width,height:b.height}};
+    return {siblings:v.parentElement===l&&t.parentElement===l,display:getComputedStyle(l).display,columns:getComputedStyle(l).gridTemplateColumns,v:get(v),t:get(t)};
+   });
+   assert(state.siblings,'Elementos devem ser irmãos diretos no grid; viewport '+width);
+   assert.equal(state.display,'grid','Display grid esperado em '+width);
+   if(width>=821){
+    const overlap=Math.min(state.v.bottom,state.t.bottom)-Math.max(state.v.y,state.t.y);
+    assert(state.t.x>=state.v.right-2,'Texto fora da coluna direita em '+width+': '+JSON.stringify(state));
+    assert(overlap>=Math.min(state.v.height,state.t.height)*.45,'Não aparecem simultaneamente em '+width+': '+JSON.stringify(state));
+   }else{
+    assert(state.t.y>=state.v.bottom-2,'Mobile deve empilhar verticalmente em '+width+': '+JSON.stringify(state));
+   }
+   console.log('PASS '+width+'px: '+state.columns+'; galeria em '+Math.round(state.v.x)+', texto em '+Math.round(state.t.x));
+   if(width===1366||width===390)await page.locator('#portfolio').screenshot({path:'/tmp/aura-portfolio-'+width+'.png'});
+   await page.close();
+  }
+  const page=await browser.newPage({viewport:{width:1366,height:900}});
+  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
+  for(const [category,expected] of [['blackwork',13],['botanica',10],['fineline',3]]){
+   await page.locator('.style-filter[data-category="'+category+'"]').click();
+   const actual=await page.locator('#gallery-track .gallery-slide').count();
+   assert.equal(actual,expected,'Categoria '+category);
+   console.log('PASS filtro '+category+': '+actual+' fotografias');
+  }
+  const icon=await page.locator('link[rel="icon"]').getAttribute('href');
+  assert(icon&&icon.includes('favicon.svg'),'Favicon da estrela ausente');
+  await page.close();
+ }finally{await browser.close()}
+})().catch(e=>{console.error(e);process.exit(1)});
