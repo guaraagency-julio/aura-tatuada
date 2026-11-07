@@ -380,3 +380,44 @@ body.motion-ready .brand-star{opacity:1!important}
 
 /* Evita repetição e espaço desnecessário do thumbnail secundário no telefone. */
 @media(max-width:560px){.portfolio-small-photo{display:none!important}}
+
+/* Portfólio — material do Drive e filtros com extrusão real em 2.5D. */
+.portfolio-section .style-filter{
+ --aura-filter-x:1px;--aura-filter-y:5px;--aura-filter-edge:#111e13;
+ --aura-filter-glint:.22;--aura-filter-light-x:-100px;--aura-filter-light-y:-100px;
+ position:relative;isolation:isolate;overflow:visible;border-radius:2px;
+ transform:translate3d(0,-2px,0);
+ background:linear-gradient(145deg,#455740,#2b382a 58%,#1e2b20);
+ border-color:rgba(244,234,215,.65);
+ box-shadow:var(--aura-filter-x) var(--aura-filter-y) 0 var(--aura-filter-edge),
+  calc(var(--aura-filter-x)*1.3) calc(var(--aura-filter-y)*1.45) 14px rgba(0,0,0,.3),
+  inset 1px 1px 0 rgba(255,248,225,.18),inset -1px -1px 0 rgba(1,10,3,.34);
+ transition:transform .18s ease,box-shadow .12s linear,background-color .18s ease,color .18s ease,border-color .18s ease;
+}
+.portfolio-section .style-filter::before{
+ content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+ background:radial-gradient(circle 94px at var(--aura-filter-light-x) var(--aura-filter-light-y),rgba(255,238,192,.65),transparent 75%);
+ opacity:var(--aura-filter-glint);
+}
+.portfolio-section .style-filter.is-selected{
+ --aura-filter-edge:#8d7959;color:#263522;
+ background:linear-gradient(145deg,#fff7e8,#e7d9bf 60%,#d2bd98);
+ border-color:#fff1d6;
+ box-shadow:var(--aura-filter-x) var(--aura-filter-y) 0 var(--aura-filter-edge),
+  calc(var(--aura-filter-x)*1.3) calc(var(--aura-filter-y)*1.45) 14px rgba(0,0,0,.28),
+  inset 1px 1px 0 rgba(255,255,248,.6),inset -1px -1px 0 rgba(105,86,58,.27);
+}
+.portfolio-section .style-filter:hover{transform:translate3d(0,-5px,0);border-color:#fff2d9}
+.portfolio-section .style-filter:active{transform:translate3d(0,1px,0)}
+body.aura-lux-on .portfolio-section .style-filter.aura-ux-pressable{filter:none}
+/* Imagem inteira: usa as dimensões nativas, sem corte ou alongamento. */
+.window-gallery .gallery-slide img{
+ width:auto;max-width:100%;height:auto;max-height:min(420px,60vh);
+ aspect-ratio:auto;object-fit:contain;display:block;margin-inline:auto;
+ background:#253123;
+}
+@media(max-width:560px){.window-gallery .gallery-slide img{max-height:min(320px,54vh)}}
+@media(prefers-reduced-motion:reduce){
+ .portfolio-section .style-filter{transition:none!important}
+ .portfolio-section .style-filter:hover,.portfolio-section .style-filter:active{transform:translate3d(0,-2px,0)}
+}

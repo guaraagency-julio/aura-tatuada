@@ -42,29 +42,47 @@ const galleryTrack = document.querySelector('#gallery-track');
 const indicatorsContainer = document.querySelector('.gallery-indicators');
 const galleryStatus = document.querySelector('#gallery-status');
 const filterButtons = [...document.querySelectorAll('.style-filter')];
-const collections = {
-  botanica: [
-    { file:'botanica-01.webp',name:'Lótus e linhas fluidas',alt:'Lótus em traços vermelhos e pretos sobre o braço' },
-    { file:'botanica-02.webp',name:'Lírios vermelhos',alt:'Lírios de linhas vermelhas nas costas' },
-    { file:'botanica-03.webp',name:'Lírios em blackwork',alt:'Composição de lírios pretos no braço' },
-    { file:'botanica-04.webp',name:'Floral em blackwork',alt:'Tatuagem de flor ornamental preta na perna' },
-    { file:'botanica-05.webp',name:'Floral orgânico',alt:'Flores e linhas fluidas em blackwork no braço' },
-    { file:'botanica-06.webp',name:'Lírios e estrelas',alt:'Lírios pretos com pequenas estrelas no antebraço' },
-    { file:'botanica-07.webp',name:'Botânica delicada',alt:'Composição floral delicada em blackwork no ombro' },
-    { file:'botanica-08.webp',name:'Lírios com movimento',alt:'Três lírios desenhados em traços pretos no braço' },
-    { file:'tatuagem-botanica.webp',name:'Composição botânica',alt:'Tatuagem botânica de grande formato nas costas' }
+// Coleções oficiais organizadas nas três pastas do Drive da Guará.
+const tattooNames = {
+  "botanica": [
+    "Flores nas costas",
+    "Floral no antebraço",
+    "Floral em destaque",
+    "Lírios no ombro",
+    "Lírios em blackwork",
+    "Lírios e estrelas",
+    "Botânica orgânica",
+    "Floral no antebraço",
+    "Botânica na perna",
+    "Folhas nas costas"
   ],
-  blackwork: [
-    { file:'tatuagem-lagarto.webp',name:'Lagarto',alt:'Tatuagem de lagarto em blackwork' },
-    { file:'tatuagem-ornamental.webp',name:'Ornamental',alt:'Tatuagem ornamental em blackwork' },
-    { file:'tatuagem-libelulas.webp',name:'Libélulas',alt:'Tatuagens de libélulas com traços escuros e detalhes vermelhos' }
+  "blackwork": [
+    "Blackwork ornamental",
+    "Traços ornamentais",
+    "Composição blackwork",
+    "Serpente em blackwork",
+    "Ornamental no braço",
+    "Crisântemo",
+    "Detalhes em preto",
+    "Olho ornamental",
+    "Sol na mão",
+    "Blackwork geométrico",
+    "Vaso ornamental",
+    "Lagarto",
+    "Libélulas"
   ],
-  fineline: [
-    { file:'tatuagem-ornamental.webp',name:'Ornamental',alt:'Tatuagem ornamental de linhas finas' },
-    { file:'tatuagem-libelulas.webp',name:'Libélulas',alt:'Tatuagens de libélulas com contornos delicados' },
-    { file:'tatuagem-botanica.webp',name:'Folhas delicadas',alt:'Tatuagem de folhagem composta por linhas delicadas' }
+  "fineline": [
+    "Ornamental delicado",
+    "Floral em linhas finas",
+    "Lettering delicado"
   ]
 };
+const collections=Object.fromEntries(Object.entries(tattooNames).map(([type,names])=>
+  [type,names.map((name,i)=>({
+    file:`portfolio/${type}-${String(i+1).padStart(2,'0')}.${type==='botanica'&&i===5?'webp':'jpg'}`,
+    name,
+    alt:`Fotografia de tatuagem ${type}: ${name.toLocaleLowerCase('pt-BR')}`
+  }))]));
 const categoryLabels={botanica:'Botânica',blackwork:'Blackwork',fineline:'Fineline'};
 let category='botanica';
 let current=0;
@@ -81,7 +99,8 @@ function showSlide(target, userInitiated=false){
   slides.forEach((slide,i)=>{
     const distance=mod(i-current,slides.length);
     const state=distance===0?'is-active':distance===1?'is-next':distance===2?'is-next2':distance===3?'is-next3':'is-hidden';
-    slide.className='gallery-slide '+state;
+    slide.classList.remove('is-active','is-next','is-next2','is-next3','is-hidden');
+    slide.classList.add(state);
     slide.tabIndex=i===current?0:-1;
     slide.setAttribute('aria-hidden', String(distance>3));
     if(i===current) slide.setAttribute('aria-current','true');
@@ -111,8 +130,8 @@ function renderCategory(nextCategory, focus=false){
     const img=document.createElement('img');
     img.src=`./assets/${item.file}`;
     img.alt=item.alt;
-    img.width=480;img.height=853;
-    img.loading=i<3?'eager':'lazy';img.decoding='async';
+    // Preserva a proporção original de cada fotografia.
+    img.loading=i<4?'eager':'lazy';img.decoding='async';
     const caption=document.createElement('span');
     caption.className='gallery-caption';caption.textContent=item.name.toLocaleUpperCase('pt-BR');
     btn.append(img,caption);
@@ -135,6 +154,7 @@ function renderCategory(nextCategory, focus=false){
     btn.setAttribute('aria-pressed',String(selected));
   });
   showSlide(0,true);
+  window.dispatchEvent(new CustomEvent('aura:portfolio-category-changed'));
   if(focus){gallery?.focus({preventScroll:true});}
 }
 filterButtons.forEach(btn=>btn.addEventListener('click',()=>renderCategory(btn.dataset.category,false)));

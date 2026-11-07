@@ -23,6 +23,9 @@
      el.classList.remove('aura-ux-near');
      el.style.removeProperty('--aura-ux-shadow');
      el.style.removeProperty('--aura-ux-text-shadow');
+     if(el.classList.contains('style-filter')){
+       for(const key of ['--aura-filter-x','--aura-filter-y','--aura-filter-glint','--aura-filter-light-x','--aura-filter-light-y'])el.style.removeProperty(key);
+     }
    }
    for(const el of surfaces)el.style.removeProperty('--aura-ux-panel-shadow');
  }
@@ -55,6 +58,14 @@
        el.style.setProperty('--aura-ux-text-shadow',
          (-dx*gain).toFixed(1)+'px '+(-dy*gain).toFixed(1)+'px '+(1+gain*3).toFixed(1)+'px rgba(255,240,195,'+(gain*.3).toFixed(2)+')');
        el.classList.toggle('aura-ux-near',gain>.12);
+       if(el.classList.contains('style-filter')){
+         const edgeX=1.2+dx*gain*4.2,edgeY=4.8+dy*gain*2.3;
+         el.style.setProperty('--aura-filter-x',edgeX.toFixed(2)+'px');
+         el.style.setProperty('--aura-filter-y',edgeY.toFixed(2)+'px');
+         el.style.setProperty('--aura-filter-glint',(.2+gain*.72).toFixed(3));
+         el.style.setProperty('--aura-filter-light-x',(x-b.left).toFixed(1)+'px');
+         el.style.setProperty('--aura-filter-light-y',(y-b.top).toFixed(1)+'px');
+       }
      }
    };
    surfaces.forEach(el=>update(el,true));
@@ -64,6 +75,7 @@
  addEventListener('aura:star-position',e=>{if(e.detail){last=e.detail;queue();}});
  addEventListener('aura:studio-tab-changed',queue);
  addEventListener('aura:studio-photo-changed',queue);
+ addEventListener('aura:portfolio-category-changed',queue);
  addEventListener('resize',queue,{passive:true});
  reduced.addEventListener('change',queue);
  new MutationObserver(queue).observe(root,{attributes:true,attributeFilter:['class']});
