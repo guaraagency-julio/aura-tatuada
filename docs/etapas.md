@@ -1,24 +1,9 @@
-# Plano de trabalho — AURA
-## Etapa 1 — Estrutura (corrente)
-- [x] Repositório independente, GitHub.
-- [x] Documento de identidade visual e arquitetura.
-- [x] HTML semântico com cinco seções, cabeçalho e rodapé.
-- [x] Layout desktop/tablet/mobile, menu responsivo, preferência por movimento reduzido.
-- [x] Espaços reservados para franja, estrela, fotos, plantas e vídeo.
-- [ ] Sincronizar imagens otimizadas do pacote de prévia com GitHub.
-- [ ] Revisão visual e ajustes orientados pelo usuário.
+# Histórico do plano — Aura Tatuada Studio
 
-## Etapa 2 — Linguagem gráfica e movimento
-- [ ] Logo SVG final e franja bicolor personalizada.
-- [ ] Estrela viajante em trajetória de scroll.
-- [ ] Vegetação em camadas com parallax.
-- [ ] Janela/portfólio com navegação interativa e transições.
-- [ ] Cadarço com animação original.
-- [ ] Poster/vídeo do estúdio quando fornecido.
+O planejamento inicial das três etapas foi atualizado e consolidado em [ROADMAP.md](./ROADMAP.md).
 
-## Etapa 3 — Acabamento e publicação
-- [ ] Aprovar textos, trabalhos, links, horários e endereço.
-- [ ] Mapa real, CTA de orçamento e contato adequado.
-- [ ] Imagens otimizadas, lazy loading, SEO e acessibilidade.
-- [ ] Teste de navegadores/dispositivos.
-- [ ] Publicar via Cloudflare Workers Static Assets, somente após aprovação.
+- **Etapa 1:** estrutura e layout-base, concluída.
+- **Etapa 2:** franja bicolor, estrela no scroll, plantas, galeria e cadarço, implementada e enviada à branch principal para avaliação.
+- **Etapa 3:** confirmar conteúdo, logotipo, mapa e contatos; realizar revisão final e publicar na Cloudflare.
+
+Ver também [DESIGN.md](./DESIGN.md) para os tokens, diretrizes e verificações do Impeccable.

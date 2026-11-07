@@ -1,13 +1,18 @@
-# Imagens do site — entrega de Etapa 1
-Arquivos previstos:
-- estudio-principal.webp — foto ampla do interior, fonte-identidade-2.jpg
-- estudo-detalhe.webp (nome **estudio-detalhe.webp**) — parede e logo, fonte-identidade-3.jpg
-- camila-retrato.webp — foto-da-tatuadora-camila.jpg
-- janela.webp — janela-efeito-portfolio.jpg
-- tatuagem-botanica.webp — tatuagem-planta-e-planta-do-lado.jpg
-- tatuagem-libelulas.webp — tatuagem-duas-libelulas.jpg
-- tatuagem-lagarto.webp — lagarto.jpg
-- tatuagem-ornamental.webp — inspiração-ornamento-papel-de-parede-plano-de-fundo.jpg
+# Fotografias e elementos visuais — Aura Tatuada Studio
 
-As fotos foram fornecidas no briefing. **Os arquivos binários não acompanham este primeiro commit**: o pacote local de prévia contém as versões WebP otimizadas; elas precisam ser sincronizadas com o repositório antes de uma publicação do site.
-Nunca publicar a referência de franja proveniente do Shutterstock como elemento final: será reconstruída em CSS/SVG original na Etapa 2.
+As oito imagens WebP otimizadas estão **versionadas neste repositório** desde a Etapa 2:
+
+- `estudio-principal.webp` — interior do estúdio, capa inicial
+- `estudio-detalhe.webp` — Camila, parede e identidade do estúdio
+- `camila-retrato.webp` — retrato da artista
+- `janela.webp` — imagem usada na composição da galeria
+- `tatuagem-botanica.webp` — tatuagem botânica nas costas
+- `tatuagem-libelulas.webp` — libélulas, preto e vermelho
+- `tatuagem-lagarto.webp` — lagarto blackwork
+- `tatuagem-ornamental.webp` — tatuagem ornamental
+
+Elementos vetoriais originais:
+- `franja-bicolor.svg` — franja verde e creme inspirada no cabelo da Camila
+- `botanica-folhas.svg`, `botanica-ramos.svg` — folhagens desenhadas para movimento parallax
+
+As fotografias originais foram fornecidas para o desenvolvimento do site. Verificar autorização de publicação e aprovação final antes do deploy e de divulgação comercial.
