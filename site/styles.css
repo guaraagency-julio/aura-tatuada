@@ -316,3 +316,67 @@ img{max-width:100%;}
   .gallery-slide{transition:none!important}
   .gallery-dot span{transition:none!important}
 }
+
+/* === AURA / revisão do catálogo e identidade (08-11-2026) === */
+/* Logo: a estrela é ancorada à própria letra U. O símbolo viajante é independente. */
+.brand-u{position:relative;display:inline-block}
+.brand-u .brand-star{position:absolute;display:block;left:50%;top:-.43em;width:.36em;height:.36em;transform:translateX(-50%);color:inherit;opacity:1!important;pointer-events:none;max-width:none}
+body.motion-ready .brand-star{opacity:1!important}
+.brand-name{overflow:visible;white-space:nowrap}
+.footer-brand{display:inline-block;white-space:nowrap}
+.footer-brand .brand-u .brand-star{top:-.47em;width:.36em;height:.36em}
+.nav-cta{white-space:nowrap}
+
+/* Controles por categoria: os três estilos selecionam fotografias diferentes. */
+.portfolio-section .styles-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:30px}
+.portfolio-section .style-filter{font-family:inherit;letter-spacing:.14em;font-size:10px;font-weight:600;line-height:1.2;border:1px solid rgba(232,221,201,.48);color:var(--cream);background:transparent;padding:12px 16px;min-height:44px;transition:background-color .18s ease,color .18s ease,border-color .18s ease}
+.portfolio-section .style-filter:hover{border-color:var(--cream)}
+.portfolio-section .style-filter.is-selected{background:var(--cream);border-color:var(--cream);color:var(--olive-900)}
+.portfolio-section .style-filter:focus-visible{outline:3px solid #d5c3a6;outline-offset:3px}
+
+/* Carousel: fonte da janela sempre visível; cards ampliados sem deformação. */
+.portfolio-visual{max-width:550px}
+.window-gallery{max-width:490px;aspect-ratio:3/4;height:auto;border:0;background:#1a231e;overflow:hidden;margin-top:18px;isolation:isolate}
+.window-scene img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:1}
+.gallery-track{position:absolute;inset:0;z-index:2;pointer-events:none;perspective:1350px;perspective-origin:43% 54%}
+.gallery-slide,.gallery-slide.is-active,.gallery-slide.is-next,.gallery-slide.is-next2,.gallery-slide.is-next3{position:absolute;left:34%;top:53%;width:52%;max-width:245px;height:auto;aspect-ratio:auto;margin:0;padding:6px 6px 0;background:#efe5d1;border:0;border-radius:15px;overflow:hidden;cursor:pointer;transform-origin:center center;transition:transform .56s cubic-bezier(.16,1,.3,1),opacity .4s ease,filter .4s ease;will-change:transform,opacity}
+.gallery-slide img{display:block;width:100%;height:auto;aspect-ratio:480/853;object-fit:contain;object-position:center;border-radius:10px 10px 2px 2px;pointer-events:none;background:#253123}
+.gallery-slide .gallery-caption{display:block;width:100%;padding:10px 4px 12px;font-size:9px;letter-spacing:.07em;line-height:1.1;color:#263020;background:#efe5d1;text-align:center;font-weight:700}
+.gallery-slide.is-active{opacity:1;z-index:6;transform:translate3d(-50%,-50%,0) scale(1);filter:none;pointer-events:auto}
+.gallery-slide.is-next{opacity:.89;z-index:5;transform:translate3d(calc(-50% + 78px),-50%,-110px) scale(.91);filter:brightness(.78) blur(.4px);pointer-events:auto}
+.gallery-slide.is-next2{opacity:.78;z-index:4;transform:translate3d(calc(-50% + 145px),-50%,-220px) scale(.79);filter:brightness(.62) blur(1px);pointer-events:auto}
+.gallery-slide.is-next3{opacity:.55;z-index:3;transform:translate3d(calc(-50% + 198px),-50%,-330px) scale(.68);filter:brightness(.48) blur(1.5px);pointer-events:auto}
+.gallery-slide.is-hidden{opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(calc(-50% + 190px),-50%,-380px) scale(.63)}
+.gallery-indicators{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:3px;margin:12px auto 0;max-width:490px}
+.gallery-dot{min-width:28px;min-height:36px;display:grid;place-items:center;border:0;background:none;padding:0;cursor:pointer}
+.gallery-dot span{width:7px;height:7px;border-radius:99px;background:#939c8e;transition:width .23s ease,background-color .23s ease}
+.gallery-dot.is-active span{width:23px;background:#f2e9d8}
+@media(max-width:1100px){
+  .window-gallery{max-width:460px}
+  .gallery-slide.is-next{transform:translate3d(calc(-50% + 74px),-50%,-110px) scale(.91)}
+  .gallery-slide.is-next2{transform:translate3d(calc(-50% + 134px),-50%,-220px) scale(.79)}
+  .gallery-slide.is-next3{transform:translate3d(calc(-50% + 180px),-50%,-330px) scale(.68)}
+}
+@media(max-width:560px){
+  .window-gallery{max-width:340px;aspect-ratio:3/4}
+  .gallery-slide,.gallery-slide.is-active,.gallery-slide.is-next,.gallery-slide.is-next2,.gallery-slide.is-next3{left:32%;top:54%;width:53%;max-width:180px;padding:5px 5px 0;border-radius:12px}
+  .gallery-slide img{border-radius:8px 8px 2px 2px}
+  .gallery-slide .gallery-caption{font-size:8px;padding:8px 2px 10px}
+  .gallery-slide.is-next{transform:translate3d(calc(-50% + 51px),-50%,-90px) scale(.9)}
+  .gallery-slide.is-next2{transform:translate3d(calc(-50% + 93px),-50%,-180px) scale(.78)}
+  .gallery-slide.is-next3{transform:translate3d(calc(-50% + 129px),-50%,-270px) scale(.67)}
+  .portfolio-section .style-filter{font-size:9px;padding:10px 11px;min-height:44px}
+}
+@media(max-width:350px){
+  .gallery-slide,.gallery-slide.is-active,.gallery-slide.is-next,.gallery-slide.is-next2,.gallery-slide.is-next3{max-width:160px}
+  .gallery-slide.is-next{transform:translate3d(calc(-50% + 43px),-50%,-90px) scale(.9)}
+  .gallery-slide.is-next2{transform:translate3d(calc(-50% + 81px),-50%,-180px) scale(.78)}
+  .gallery-slide.is-next3{transform:translate3d(calc(-50% + 113px),-50%,-270px) scale(.67)}
+}
+@media(prefers-reduced-motion:reduce){
+  .gallery-slide,.gallery-slide.is-active,.gallery-slide.is-next,.gallery-slide.is-next2,.gallery-slide.is-next3{transition:none!important;filter:none!important}
+  .portfolio-section .style-filter{transition:none}
+}
+
+/* Evita repetição e espaço desnecessário do thumbnail secundário no telefone. */
+@media(max-width:560px){.portfolio-small-photo{display:none!important}}

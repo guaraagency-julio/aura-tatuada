@@ -34,67 +34,125 @@
   }
 
 
-// Carrossel em profundidade: o cenário da janela permanece visível.
+// Portfólio segmentado por estilo, com cards em profundidade.
+// Apenas fotos fornecidas e identificadas no briefing. O mesmo trabalho pode figurar
+// em mais de um estilo quando a técnica representada for compatível.
 const gallery = document.querySelector('.window-gallery');
-const slides = [...document.querySelectorAll('.gallery-slide')];
-const indicators = [...document.querySelectorAll('.gallery-dot')];
+const galleryTrack = document.querySelector('#gallery-track');
+const indicatorsContainer = document.querySelector('.gallery-indicators');
 const galleryStatus = document.querySelector('#gallery-status');
-let current = 0, autoplay = null, galleryVisible = false, userPaused = false, pointer = null;
-const mod = (n,m) => ((n % m) + m) % m;
-function stopAutoplay(){ if(autoplay!==null){ clearInterval(autoplay); autoplay=null; } }
-function showSlide(target, manual=false){
+const filterButtons = [...document.querySelectorAll('.style-filter')];
+const collections = {
+  botanica: [
+    { file:'botanica-01.webp',name:'Lótus e linhas fluidas',alt:'Lótus em traços vermelhos e pretos sobre o braço' },
+    { file:'botanica-02.webp',name:'Lírios vermelhos',alt:'Lírios de linhas vermelhas nas costas' },
+    { file:'botanica-03.webp',name:'Lírios em blackwork',alt:'Composição de lírios pretos no braço' },
+    { file:'botanica-04.webp',name:'Floral em blackwork',alt:'Tatuagem de flor ornamental preta na perna' },
+    { file:'botanica-05.webp',name:'Floral orgânico',alt:'Flores e linhas fluidas em blackwork no braço' },
+    { file:'botanica-06.webp',name:'Lírios e estrelas',alt:'Lírios pretos com pequenas estrelas no antebraço' },
+    { file:'botanica-07.webp',name:'Botânica delicada',alt:'Composição floral delicada em blackwork no ombro' },
+    { file:'botanica-08.webp',name:'Lírios com movimento',alt:'Três lírios desenhados em traços pretos no braço' },
+    { file:'tatuagem-botanica.webp',name:'Composição botânica',alt:'Tatuagem botânica de grande formato nas costas' }
+  ],
+  blackwork: [
+    { file:'tatuagem-lagarto.webp',name:'Lagarto',alt:'Tatuagem de lagarto em blackwork' },
+    { file:'tatuagem-ornamental.webp',name:'Ornamental',alt:'Tatuagem ornamental em blackwork' },
+    { file:'tatuagem-libelulas.webp',name:'Libélulas',alt:'Tatuagens de libélulas com traços escuros e detalhes vermelhos' }
+  ],
+  fineline: [
+    { file:'tatuagem-ornamental.webp',name:'Ornamental',alt:'Tatuagem ornamental de linhas finas' },
+    { file:'tatuagem-libelulas.webp',name:'Libélulas',alt:'Tatuagens de libélulas com contornos delicados' },
+    { file:'tatuagem-botanica.webp',name:'Folhas delicadas',alt:'Tatuagem de folhagem composta por linhas delicadas' }
+  ]
+};
+const categoryLabels={botanica:'Botânica',blackwork:'Blackwork',fineline:'Fineline'};
+let category='botanica';
+let current=0;
+let slides=[];
+let indicators=[];
+let pointer=null;
+let suppressClickUntil=0;
+function stopAutoplay(){} // Galeria manual: nenhuma mudança automática de fotos.
+function startAutoplay(){}
+const mod=(n,m)=>((n%m)+m)%m;
+function showSlide(target, userInitiated=false){
   if(!slides.length)return;
-  current=mod(target, slides.length);
+  current=mod(target,slides.length);
   slides.forEach((slide,i)=>{
     const distance=mod(i-current,slides.length);
-    slide.classList.remove('is-active','is-next','is-next2','is-next3');
-    slide.classList.add(['is-active','is-next','is-next2','is-next3'][distance]||'is-next3');
-    if(i===current)slide.setAttribute('aria-current','true'); else slide.removeAttribute('aria-current');
+    const state=distance===0?'is-active':distance===1?'is-next':distance===2?'is-next2':distance===3?'is-next3':'is-hidden';
+    slide.className='gallery-slide '+state;
+    slide.tabIndex=i===current?0:-1;
+    slide.setAttribute('aria-hidden', String(distance>3));
+    if(i===current) slide.setAttribute('aria-current','true');
+    else slide.removeAttribute('aria-current');
   });
   indicators.forEach((dot,i)=>{
     dot.classList.toggle('is-active',i===current);
-    if(i===current)dot.setAttribute('aria-current','true'); else dot.removeAttribute('aria-current');
+    dot.setAttribute('aria-pressed',String(i===current));
+    if(i===current)dot.setAttribute('aria-current','true');
+    else dot.removeAttribute('aria-current');
   });
-  if(galleryStatus)galleryStatus.textContent=`${slides[current].dataset.name}, trabalho ${current+1} de ${slides.length}`;
-  if(manual){userPaused=true;stopAutoplay();}
+  if(galleryStatus && (userInitiated || current===0)) galleryStatus.textContent=`${categoryLabels[category]}, ${slides[current].dataset.name}; trabalho ${current+1} de ${slides.length}`;
 }
-function startAutoplay(){
-  if(reducedMedia.matches||userPaused||!galleryVisible||document.hidden||autoplay!==null||slides.length<2)return;
-  autoplay=setInterval(()=>showSlide(current+1),6500);
+function renderCategory(nextCategory, focus=false){
+  if(!collections[nextCategory] || !galleryTrack || !indicatorsContainer)return;
+  category=nextCategory;
+  current=0;
+  const items=collections[category];
+  galleryTrack.replaceChildren();
+  indicatorsContainer.replaceChildren();
+  slides=items.map((item,i)=>{
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='gallery-slide';
+    btn.dataset.name=item.name;
+    btn.setAttribute('aria-label',`${item.name}, foto ${i+1} de ${items.length}`);
+    const img=document.createElement('img');
+    img.src=`./assets/${item.file}`;
+    img.alt=item.alt;
+    img.width=480;img.height=853;
+    img.loading=i<3?'eager':'lazy';img.decoding='async';
+    const caption=document.createElement('span');
+    caption.className='gallery-caption';caption.textContent=item.name.toLocaleUpperCase('pt-BR');
+    btn.append(img,caption);
+    btn.addEventListener('click',e=>{if(performance.now()<suppressClickUntil){e.preventDefault();return;}showSlide(i===current?current+1:i,true);});
+    galleryTrack.appendChild(btn);
+    return btn;
+  });
+  indicators=items.map((item,i)=>{
+    const dot=document.createElement('button');
+    dot.type='button';dot.className='gallery-dot';dot.dataset.index=String(i);
+    dot.setAttribute('aria-label',`Ver ${item.name}, foto ${i+1} de ${items.length}`);
+    dot.innerHTML='<span aria-hidden="true"></span>';
+    dot.addEventListener('click',()=>showSlide(i,true));
+    indicatorsContainer.appendChild(dot);
+    return dot;
+  });
+  filterButtons.forEach(btn=>{
+    const selected=btn.dataset.category===category;
+    btn.classList.toggle('is-selected',selected);
+    btn.setAttribute('aria-pressed',String(selected));
+  });
+  showSlide(0,true);
+  if(focus){gallery?.focus({preventScroll:true});}
 }
-slides.forEach((slide,i)=>slide.addEventListener('click',()=>{
-  // Clicar no principal avança; clicar em qualquer card traseiro o traz à frente.
-  showSlide(i===current ? current+1 : i,true);
-}));
-indicators.forEach((dot,i)=>dot.addEventListener('click',()=>showSlide(i,true)));
+filterButtons.forEach(btn=>btn.addEventListener('click',()=>renderCategory(btn.dataset.category,false)));
 gallery?.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'){e.preventDefault();showSlide(current+1,true);}
   if(e.key==='ArrowLeft'){e.preventDefault();showSlide(current-1,true);}
 });
-gallery?.addEventListener('pointerdown',e=>{
-  if(e.target.closest('button,a'))return;
-  pointer={id:e.pointerId,x:e.clientX,y:e.clientY};
-});
+gallery?.addEventListener('pointerdown',e=>{pointer={id:e.pointerId,x:e.clientX,y:e.clientY};});
 gallery?.addEventListener('pointerup',e=>{
-  if(!pointer||pointer.id!==e.pointerId)return;
+  if(!pointer || pointer.id!==e.pointerId)return;
   const dx=e.clientX-pointer.x,dy=e.clientY-pointer.y;
-  if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.3)showSlide(current+(dx<0?1:-1),true);
+  if(Math.abs(dx)>38 && Math.abs(dx)>Math.abs(dy)*1.4){
+    e.preventDefault();suppressClickUntil=performance.now()+400;showSlide(current+(dx<0?1:-1),true);
+  }
   pointer=null;
 });
 gallery?.addEventListener('pointercancel',()=>{pointer=null;});
-gallery?.addEventListener('mouseenter',stopAutoplay);
-gallery?.addEventListener('mouseleave',startAutoplay);
-gallery?.addEventListener('focusin',stopAutoplay);
-gallery?.addEventListener('focusout',e=>{if(!gallery.contains(e.relatedTarget))startAutoplay();});
-document.addEventListener('visibilitychange',()=>document.hidden?stopAutoplay():startAutoplay());
-window.addEventListener('blur',()=>{pointer=null;stopAutoplay();});
-if('IntersectionObserver' in window&&gallery){
-  const io=new IntersectionObserver(entries=>{
-    galleryVisible=entries[0].isIntersecting;
-    galleryVisible?startAutoplay():stopAutoplay();
-  },{threshold:.3});io.observe(gallery);
-}
-showSlide(0);
+renderCategory('botanica');
 
   // Progress-linked four-point mark. Anchors are recomputed at resize/content changes.
   const star = document.querySelector('.scroll-star');
@@ -149,6 +207,7 @@ showSlide(0);
       const size = vw < 560 ? 22 : 32;
       star.style.width = `${size}px`;
       star.style.height = `${size}px`;
+      star.style.opacity = scroll < 26 ? '0' : '1';
       star.style.transform = `translate3d(${(x - size / 2).toFixed(1)}px,${(y - size / 2).toFixed(1)}px,0) rotate(${(scroll * .05).toFixed(1)}deg)`;
       star.dataset.tone = t < .5 ? a.tone : b.tone;
     }
