@@ -57,39 +57,28 @@
       </div>
     </section>
 
-    <section class="portfolio-section star-zone" data-star-tone="dark" id="portfolio" aria-labelledby="portfolio-heading">
+    <section class="portfolio-section star-zone" data-star-tone="light" id="portfolio" aria-labelledby="portfolio-heading">
       <img class="foliage foliage-portfolio parallax-botanical" src="./assets/botanica-folhas.svg" width="420" height="760" alt="" aria-hidden="true" data-parallax="-20">
       <div class="container portfolio-layout">
         <div class="portfolio-visual">
           <p class="microcopy">01 <span class="slash">/</span> EXPLORE O PORTFÓLIO</p>
 
-<div class="window-gallery depth-gallery" aria-roledescription="carrossel" aria-label="Portfólio da Camila" tabindex="0">
-  <div class="window-scene" aria-hidden="true"><img src="./assets/janela.webp" width="1080" height="1440" alt="" loading="lazy" decoding="async"></div>
-  <div class="gallery-track" id="gallery-track" aria-live="off">
-    <figure class="gallery-slide is-active" data-name="Botânica" aria-label="Trabalho 1 de 4" aria-hidden="false">
-      <img src="./assets/tatuagem-botanica.webp" width="1080" height="1440" alt="Tatuagem botânica em blackwork nas costas" loading="lazy" decoding="async">
-      <figcaption>BOTÂNICA</figcaption>
-    </figure>
-    <figure class="gallery-slide" data-name="Libélulas" aria-label="Trabalho 2 de 4" aria-hidden="true" inert>
-      <img src="./assets/tatuagem-libelulas.webp" width="1080" height="1440" alt="Tatuagem com duas libélulas, uma preta e outra vermelha" loading="lazy" decoding="async">
-      <figcaption>LIBÉLULAS</figcaption>
-    </figure>
-    <figure class="gallery-slide" data-name="Lagarto" aria-label="Trabalho 3 de 4" aria-hidden="true" inert>
-      <img src="./assets/tatuagem-lagarto.webp" width="1080" height="1411" alt="Tatuagem de lagarto em blackwork" loading="lazy" decoding="async">
-      <figcaption>BLACKWORK</figcaption>
-    </figure>
-    <figure class="gallery-slide" data-name="Ornamental" aria-label="Trabalho 4 de 4" aria-hidden="true" inert>
-      <img src="./assets/tatuagem-ornamental.webp" width="1080" height="1440" alt="Tatuagem ornamental com linhas finas" loading="lazy" decoding="async">
-      <figcaption>ORNAMENTAL</figcaption>
-    </figure>
-  </div>
-  <div class="gallery-controls">
-    <button class="gallery-arrow" id="gallery-prev" type="button" aria-label="Ver tatuagem anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5.5-6.5 6.5 6.5 6.5M8 12h13" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-    <span class="gallery-count" id="gallery-count" aria-live="polite" aria-atomic="true">01 <span>/</span> 04</span>
-    <button class="gallery-arrow" id="gallery-next" type="button" aria-label="Ver próxima tatuagem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5.5 6.5 6.5-6.5 6.5M16 12H3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-  </div>
-</div>
-          <p class="gallery-footnote">TATUAGENS EM PEQUENOS CARDS SOBRE A FOTO ORIGINAL DA JANELA.</p>
+<div class="window-gallery depth-gallery" aria-roledescription="carrossel" aria-label="Tatuagens da Camila" tabindex="0">
+            <div class="window-scene" aria-hidden="true"><img src="./assets/janela.webp" width="1080" height="1440" alt="" loading="eager" decoding="async"></div>
+            <div class="gallery-track" id="gallery-track">
+              <button class="gallery-slide is-active" type="button" data-name="Botânica" aria-label="Botânica — primeira tatuagem" aria-current="true"><img src="./assets/tatuagem-botanica.webp" width="1080" height="1440" alt="" loading="eager"><span class="gallery-caption">BOTÂNICA</span></button>
+              <button class="gallery-slide" type="button" data-name="Libélulas" aria-label="Libélulas — segunda tatuagem"><img src="./assets/tatuagem-libelulas.webp" width="1080" height="1440" alt="" loading="lazy"><span class="gallery-caption">LIBÉLULAS</span></button>
+              <button class="gallery-slide" type="button" data-name="Lagarto" aria-label="Lagarto — terceira tatuagem"><img src="./assets/tatuagem-lagarto.webp" width="1080" height="1411" alt="" loading="lazy"><span class="gallery-caption">BLACKWORK</span></button>
+              <button class="gallery-slide" type="button" data-name="Ornamental" aria-label="Ornamental — quarta tatuagem"><img src="./assets/tatuagem-ornamental.webp" width="1080" height="1440" alt="" loading="lazy"><span class="gallery-caption">ORNAMENTAL</span></button>
+            </div>
+          </div>
+          <div class="gallery-indicators" role="group" aria-label="Escolher tatuagem">
+            <button type="button" class="gallery-dot is-active" data-index="0" aria-label="Ver botânica" aria-current="true"><span></span></button>
+            <button type="button" class="gallery-dot" data-index="1" aria-label="Ver libélulas"><span></span></button>
+            <button type="button" class="gallery-dot" data-index="2" aria-label="Ver lagarto"><span></span></button>
+            <button type="button" class="gallery-dot" data-index="3" aria-label="Ver ornamental"><span></span></button>
+          </div>
+          <span class="sr-only" id="gallery-status" aria-live="polite" aria-atomic="true">Botânica, trabalho 1 de 4</span>
         </div>
         <div class="portfolio-text">
           <p class="kicker">TATUAGEM COMO EXPRESSÃO</p>
@@ -102,7 +91,7 @@
       </div>
     </section>
 
-    <section class="artist-section star-zone" data-star-tone="light" id="artista" aria-labelledby="artist-heading">
+    <section class="artist-section star-zone" data-star-tone="dark" id="artista" aria-labelledby="artist-heading">
       <img class="foliage foliage-artist parallax-botanical" src="./assets/botanica-ramos.svg" width="550" height="820" alt="" aria-hidden="true" data-parallax="26">
       <div class="container artist-layout">
         <div class="artist-intro">
@@ -117,7 +106,7 @@
       </div>
     </section>
 
-    <section class="studio-section star-zone" data-star-tone="dark" id="estudio" aria-labelledby="studio-heading">
+    <section class="studio-section star-zone" data-star-tone="light" id="estudio" aria-labelledby="studio-heading">
       <img class="foliage foliage-studio parallax-botanical" src="./assets/botanica-folhas.svg" width="420" height="760" alt="" aria-hidden="true" data-parallax="-16">
       <div class="container studio-layout">
         <div class="studio-intro">
@@ -125,26 +114,28 @@
           <p class="kicker">UM ESPAÇO QUE ACOLHE</p>
           <h2 id="studio-heading">Cada detalhe<br>faz <em>parte da arte.</em></h2>
           <p class="section-description">Plantas, tons naturais, luz suave e um espaço pensado para receber você. Conheça um pouco do Aura Tatuada Studio.</p>
-          <figure class="studio-photo"><img src="./assets/estudio-detalhe.webp" width="1080" height="1350" alt="A tatuadora Camila em frente à parede verde-oliva com o logotipo Aura Tatuada Studio" loading="lazy" decoding="async"><figcaption>AURA TATUADA STUDIO / NOVO HAMBURGO</figcaption></figure>
         </div>
         <div class="studio-location" id="localizacao">
           <p class="microcopy">04 <span class="slash">/</span> VENHA CONHECER</p>
           <div class="location-header"><h3>Onde a arte acontece.</h3><span aria-hidden="true">↗</span></div>
-          <div class="map-concept" role="img" aria-label="Área ilustrativa da localização. Endereço do estúdio confirmado.">
-            <span class="map-area">NOVO HAMBURGO, RS</span><span class="map-pin" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 0c4.6 20.8 11.2 27.4 32 32-20.8 4.6-27.4 11.2-32 32C27.4 43.2 20.8 36.6 0 32 20.8 27.4 27.4 20.8 32 0Z" fill="currentColor"/></svg></span><span class="map-note">R. JOAQUIM NABUCO, 1044<br>CENTRO · NOVO HAMBURGO</span>
+          <div class="map-embed">
+            <iframe title="Mapa do Aura Tatuada Studio — Rua Joaquim Nabuco, 1044, Centro, Novo Hamburgo" src="https://maps.google.com/maps?q=R.%20Joaquim%20Nabuco%2C%201044%2C%20Centro%2C%20Novo%20Hamburgo%2C%20RS%2C%2093310-002&amp;z=16&amp;output=embed" width="600" height="380" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
           </div>
-          <div class="location-caption"><span><strong>Aura Tatuada Studio</strong><small>R. Joaquim Nabuco, 1044 — Centro · Novo Hamburgo/RS</small></span><span class="location-pending">VER ENDEREÇO ABAIXO</span></div>
+          <div class="location-caption"><span><strong>Aura Tatuada Studio</strong><small>R. Joaquim Nabuco, 1044 — Centro · Novo Hamburgo/RS</small></span><a class="location-route" href="https://www.google.com/maps/search/?api=1&amp;query=R.+Joaquim+Nabuco%2C+1044%2C+Centro%2C+Novo+Hamburgo%2C+RS" target="_blank" rel="noopener noreferrer">ABRIR ROTAS ↗</a></div>
         </div>
       </div>
     </section>
 
-    <section class="contact-section star-zone" data-star-tone="light" id="contato" aria-labelledby="contact-heading">
-      <div class="container contact-center">
-        <p class="microcopy light">05 <span class="slash">/</span> VAMOS CONVERSAR</p>
-        <h2 id="contact-heading">Sua ideia merece<br><em>ganhar forma.</em></h2>
-        <p>Tem uma referência, um desenho ou uma ideia em mente? Entre em contato e converse sobre o seu próximo projeto.</p>
-        <a class="button button-light" href="https://wa.me/5551998713610" target="_blank" rel="noopener noreferrer">Conversar com a Camila <span aria-hidden="true">↗</span></a>
-        <p class="contact-secondary">WhatsApp: +55 51 99871-3610 · Instagram: @auratatuada</p>
+    <section class="contact-section star-zone" data-star-tone="dark" id="contato" aria-labelledby="contact-heading">
+      <div class="container contact-layout">
+        <figure class="contact-photo"><img src="./assets/estudio-detalhe.webp" width="1080" height="1350" alt="Camila no Aura Tatuada Studio em frente à parede verde com o logotipo do estúdio" loading="lazy" decoding="async"><figcaption>CAMILA · AURA TATUADA STUDIO</figcaption></figure>
+        <div class="contact-copy">
+          <p class="microcopy">05 <span class="slash">/</span> VAMOS CONVERSAR</p>
+          <h2 id="contact-heading">Sua ideia merece<br><em>ganhar forma.</em></h2>
+          <p>Tem uma referência, um desenho ou uma ideia em mente? Entre em contato e converse sobre o seu próximo projeto.</p>
+          <a class="button contact-button" href="https://wa.me/5551998713610" target="_blank" rel="noopener noreferrer">Conversar com a Camila <span aria-hidden="true">↗</span></a>
+          <p class="contact-secondary">WhatsApp: +55 51 99871-3610 · Instagram: @auratatuada</p>
+        </div>
       </div>
     </section>
   </main>
