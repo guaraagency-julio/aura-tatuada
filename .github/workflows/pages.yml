@@ -28,6 +28,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Reconstruct full background video
+        shell: bash
+        run: |
+          cat media-source/hero-video/part-*.b64 | base64 --decode > site/assets/hero-background.mp4
+          test "$(stat -c%s site/assets/hero-background.mp4)" -eq 3704475
+          echo "2e0ea345cd5efcc9bd59859d298e36edc2db654e71d4e33412ab035b9b4f234c  site/assets/hero-background.mp4" | sha256sum -c -
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:

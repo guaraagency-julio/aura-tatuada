@@ -1,0 +1,6 @@
+/* Relevo tipográfico vinculado à luz: sombra sem deformar letras ou layouts. */
+body.aura-lux-on .aura-relief-title{text-shadow:0 1px 0 rgba(12,22,10,.12),1px 2px 3px rgba(12,22,10,.13);transition:text-shadow .12s linear}
+/* Em fundo claro, a estrela ganha contorno oliva e halo quente com boa separação. */
+body.aura-lux-on .scroll-star[data-tone="dark"]{color:#ffecae;filter:drop-shadow(0 1px 1px rgba(25,38,18,.9)) drop-shadow(0 0 3px rgba(24,34,18,.75)) drop-shadow(0 0 11px rgba(224,181,89,.65))}
+body.aura-lux-on .scroll-star[data-tone="dark"]::before{content:"";position:absolute;inset:-12px;border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(49,59,31,.24),rgba(49,59,31,.10) 43%,transparent 73%);pointer-events:none}
+@media(prefers-reduced-motion:reduce){.aura-relief-title{text-shadow:none!important;transition:none!important}body.aura-lux-on .scroll-star[data-tone="dark"]::before{display:none}}
