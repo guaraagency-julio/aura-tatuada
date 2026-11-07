@@ -1,0 +1,76 @@
+/* Aura / Luz nivel 2 — modulo isolado e reversivel.
+   Ponto de restauracao: backup/antes-luz-nivel-2-2026-11-07. */
+body.aura-lux-on .portfolio-section{background:#171e15}
+body.aura-lux-on .studio-section{background:#2a3628}
+body.aura-lux-on .artist-section{background:#e9e1d3}
+body.aura-lux-on .contact-section{background:#e2d9c9}
+body.aura-lux-on .hero-photo{filter:brightness(.84) saturate(.91)}
+body.aura-lux-on .window-scene img{filter:brightness(.81) saturate(.94)}
+.aura-lux-wash{position:absolute;inset:0;z-index:1;pointer-events:none;
+background:radial-gradient(circle 370px at var(--lux-x,-999px) var(--lux-y,-999px),
+rgba(255,230,169,.39) 0%,rgba(245,199,126,.18) 28%,rgba(225,176,104,.07) 54%,transparent 87%);
+mix-blend-mode:screen;opacity:var(--lux-zone-opacity,0);transition:opacity .18s ease-out}
+.aura-lux-zone.is-paper .aura-lux-wash{
+background:radial-gradient(circle 300px at var(--lux-x,-999px) var(--lux-y,-999px),
+rgba(254,221,159,.23),rgba(238,197,126,.10) 39%,transparent 79%);mix-blend-mode:multiply}
+body.aura-lux-on .hero-content,
+body.aura-lux-on .portfolio-layout,
+body.aura-lux-on .artist-layout,
+body.aura-lux-on .studio-layout,
+body.aura-lux-on .contact-layout,
+body.aura-lux-on .footer-content,
+body.aura-lux-on .footer-credits{position:relative;z-index:2}
+body.aura-lux-on .contact-section{position:relative;isolation:isolate}
+body.aura-lux-on .footer{isolation:isolate}
+.aura-lux-photowash{position:absolute;inset:0;pointer-events:none;z-index:1;
+background:radial-gradient(circle 230px at var(--lux-photo-x,-999px) var(--lux-photo-y,-999px),
+rgba(255,236,184,.40),rgba(255,216,141,.14) 37%,transparent 77%);
+mix-blend-mode:screen;opacity:var(--lux-photo-opacity,0)}
+.hero>.aura-lux-photowash{z-index:-1}
+.window-scene>.aura-lux-photowash{z-index:1}
+.aura-lux-halo{position:fixed;top:0;left:0;width:480px;height:480px;
+z-index:34;pointer-events:none;border-radius:50%;opacity:0;
+background:radial-gradient(circle,rgba(255,249,209,.32) 0%,
+rgba(255,220,154,.19) 18%,rgba(235,185,107,.08) 43%,transparent 72%);
+mix-blend-mode:screen;transform:translate3d(-999px,-999px,0);will-change:transform}
+body.aura-lux-on .scroll-star{color:#fff2c1;
+filter:drop-shadow(0 0 5px rgba(255,238,174,.98)) drop-shadow(0 0 16px rgba(245,206,125,.78))}
+body.aura-lux-on .scroll-star[data-tone="dark"]{color:#ecd49f}
+.aura-lux-object::after{content:"";position:absolute;inset:0;z-index:7;pointer-events:none;
+background:radial-gradient(circle 185px at var(--lux-object-x,-999px) var(--lux-object-y,-999px),
+rgba(255,241,196,.47),rgba(241,199,121,.18) 43%,transparent 80%);
+mix-blend-mode:screen;opacity:var(--lux-object-opacity,0)}
+body.aura-lux-on .gallery-slide.aura-lux-object,
+body.aura-lux-on .artist-image.aura-lux-object,
+body.aura-lux-on .contact-photo.aura-lux-object,
+body.aura-lux-on .portfolio-small-photo.aura-lux-object{
+box-shadow:var(--lux-shadow,0 18px 35px rgba(0,0,0,.18))}
+body.aura-lux-on .foliage.aura-lux-object{
+filter:brightness(var(--lux-plant-brightness,1))
+drop-shadow(var(--lux-leaf-x,0px) var(--lux-leaf-y,12px) var(--lux-leaf-blur,16px) rgba(0,0,0,.27))}
+body.aura-lux-on .foliage.aura-lux-object::after{display:none}
+.aura-lux-toggle{position:fixed;right:18px;bottom:18px;z-index:80;min-height:44px;
+padding:10px 15px;display:flex;align-items:center;gap:9px;
+border:1px solid rgba(231,219,187,.42);border-radius:999px;
+background:rgba(32,39,27,.93);color:#f0e4c8;
+box-shadow:0 9px 24px rgba(7,14,6,.23);backdrop-filter:blur(8px);
+font:600 12px/1.3 'DM Sans',Arial,sans-serif;letter-spacing:.025em;
+cursor:pointer;transition:background .2s,border-color .2s}
+.aura-lux-toggle:hover{background:#405139;border-color:#e9d19f}
+.aura-lux-toggle:focus-visible{outline:3px solid #e5c88b;outline-offset:3px}
+.aura-lux-toggle svg{width:19px;height:19px;flex:none}
+.aura-lux-toggle[aria-pressed="false"]{background:rgba(46,47,39,.92);color:#d2ccb9}
+.aura-lux-toggle:disabled{cursor:not-allowed;opacity:.67}
+@media(max-width:700px){
+.aura-lux-halo{width:360px;height:360px}
+.aura-lux-wash{background:radial-gradient(circle 265px at var(--lux-x,-999px) var(--lux-y,-999px),
+rgba(255,227,163,.31),rgba(237,191,119,.11) 42%,transparent 82%)}
+.aura-lux-toggle{right:12px;bottom:max(12px,env(safe-area-inset-bottom));width:44px;height:44px;
+padding:0;justify-content:center;border-radius:50%}
+.aura-lux-label{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){
+.aura-lux-halo,.aura-lux-wash,.aura-lux-photowash{display:none!important}
+.aura-lux-object::after{display:none!important}
+body.aura-lux-on .foliage.aura-lux-object{filter:none!important}
+.aura-lux-toggle{transition:none}}
