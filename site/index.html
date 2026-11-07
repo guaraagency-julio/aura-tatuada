@@ -2,136 +2,146 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#292d1c">
-  <meta name="description" content="Aura Tatuada Studio, em Novo Hamburgo. Tatuagens autorais com foco em blackwork, botânica e traços delicados.">
-  <meta property="og:title" content="Aura Tatuada Studio | Blackwork & Botânica">
-  <meta property="og:description" content="Tatuagens autorais no Aura Tatuada Studio, em Novo Hamburgo.">
-  <title>Aura Tatuada Studio — Arte que floresce na pele</title>
+  <meta name="description" content="Aura Tatuada Studio: arte autoral em blackwork e botânica, em Novo Hamburgo, RS. Conheça o trabalho da tatuadora Camila.">
+  <meta property="og:title" content="Aura Tatuada Studio — Blackwork & Botânica">
+  <meta property="og:description" content="Tatuagem autoral que floresce na pele. Novo Hamburgo, RS.">
+  <title>Aura Tatuada Studio — Blackwork & Botânica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="./assets/estudio-principal.webp" as="image" type="image/webp">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./main.js"></script>
+  <script src="./main.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="fringe-framing" aria-hidden="true"><img src="./assets/franja-bicolor.svg" alt=""></div>
+  <div class="scroll-star" aria-hidden="true">
+    <svg viewBox="0 0 64 64"><path d="M32 0c4.6 20.8 11.2 27.4 32 32-20.8 4.6-27.4 11.2-32 32C27.4 43.2 20.8 36.6 0 32 20.8 27.4 27.4 20.8 32 0Z" fill="currentColor"/></svg>
+  </div>
   <header class="site-header" id="inicio">
-    <div class="header-inner">
-      <a class="brand" href="#inicio" aria-label="Aura Tatuada Studio, voltar ao início">
-        <span class="brand-name">aura<span class="brand-dot">.</span><svg class="brand-star" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0c2.8 12.2 7.8 17.2 20 20-12.2 2.8-17.2 7.8-20 20C17.2 27.8 12.2 22.8 0 20 12.2 17.2 17.2 12.2 20 0Z"/></svg></span>
-        <span class="brand-subtitle">TATUADA STUDIO</span>
+    <div class="header-row container-wide">
+      <a class="brand" href="#inicio" aria-label="Aura Tatuada Studio — início">
+        <span class="brand-name">aura<span class="brand-period">.</span><svg class="brand-star" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 0c4.6 20.8 11.2 27.4 32 32-20.8 4.6-27.4 11.2-32 32C27.4 43.2 20.8 36.6 0 32 20.8 27.4 27.4 20.8 32 0Z" fill="currentColor"/></svg></span>
+        <span class="brand-caption">TATUADA STUDIO</span>
       </a>
-      <nav class="desktop-nav" aria-label="Navegação principal">
-        <a href="#portfolio">Portfólio</a><a href="#artista">Camila</a><a href="#estudio">Estúdio</a>
+      <nav class="nav-desktop" aria-label="Navegação principal">
+        <a href="#portfolio">Portfólio</a>
+        <a href="#artista">A artista</a>
+        <a href="#estudio">O estúdio</a>
       </nav>
-      <div class="header-actions">
-        <a class="icon-link" href="https://www.instagram.com/auratatuada/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Aura Tatuada (perfil informado nas imagens)">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/auratatuada/" target="_blank" rel="noopener noreferrer" class="instagram-link" aria-label="Instagram Aura Tatuada, abre nova aba">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2.7" y="2.7" width="18.6" height="18.6" rx="5"/><circle cx="12" cy="12" r="4.15"/><circle cx="17.9" cy="6.3" r=".8" fill="currentColor" stroke="none"/></svg>
         </a>
-        <a class="contact-button" href="#contato">Conversar <span aria-hidden="true">↗</span></a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menu"><span></span><span></span></button>
+        <a href="#contato" class="nav-cta">Agendar conversa <span aria-hidden="true">↗</span></a>
+        <button class="menu-button" type="button" aria-label="Abrir menu" aria-controls="nav-mobile" aria-expanded="false"><span></span><span></span></button>
       </div>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegação móvel" hidden>
-      <a href="#portfolio">Portfólio</a><a href="#artista">A tatuadora</a><a href="#estudio">O estúdio</a><a href="#contato">Contato</a>
+    <nav class="nav-mobile" id="nav-mobile" aria-label="Menu para telas pequenas" hidden>
+      <a href="#portfolio">01 / Portfólio</a><a href="#artista">02 / A artista</a><a href="#estudio">03 / O estúdio</a><a href="#contato">04 / Conversar</a>
     </nav>
   </header>
-
   <main id="conteudo">
-    <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-image" src="./assets/estudio-principal.webp" alt="Interior do Aura Tatuada Studio, com parede verde-oliva, iluminação natural e mobiliário de madeira" data-fallback="hero">
-      <div class="hero-shade"></div>
-      <div class="container hero-content">
-        <div class="eyebrow eyebrow-light"><span class="eyebrow-rule"></span> ESTÚDIO AUTORAL EM NOVO HAMBURGO</div>
-        <h1 id="hero-title">Arte que <em>floresce</em><br>na pele.</h1>
-        <p class="hero-description">Blackwork, botânica e desenhos autorais para levar um pouco de arte com você.</p>
-        <div class="hero-cta"><a class="button button-cream" href="#portfolio">Conheça o portfólio <span aria-hidden="true">↗</span></a><span>BLACKWORK · BOTÂNICA</span></div>
-        <div class="hero-footnote">AURA TATUADA STUDIO <span>↓ DESLIZE PARA CONHECER</span></div>
+    <section class="hero star-zone" data-star-tone="light" aria-labelledby="hero-heading">
+      <img class="hero-photo" src="./assets/estudio-principal.webp" width="1080" height="1350" alt="Recepção do Aura Tatuada Studio, com parede verde-oliva, luz natural e mobiliário de madeira" fetchpriority="high">
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="hero-content container">
+        <p class="microcopy light"><span class="microline"></span> ESTÚDIO AUTORAL · NOVO HAMBURGO, RS</p>
+        <h1 id="hero-heading">Arte que<br><em>floresce</em> na pele.</h1>
+        <p class="hero-lead">Blackwork e botânica em tatuagens que carregam histórias, formas e detalhes.</p>
+        <div class="hero-commands"><a class="button button-light" href="#portfolio">Explorar trabalhos <span aria-hidden="true">↗</span></a><span class="micro-hint">TRAÇOS AUTORAIS / 2026</span></div>
+        <div class="hero-bottom"><span>ESTÚDIO AURA TATUADA</span><a href="#portfolio">ROLE PARA CONHECER <span aria-hidden="true">↓</span></a></div>
       </div>
-      <div class="hero-video-note">VÍDEO DE FUNDO · PREVISTO PARA A ETAPA 2</div>
     </section>
 
-    <section class="portfolio section" id="portfolio" aria-labelledby="portfolio-title">
-      <div class="container portfolio-grid">
-        <div class="portfolio-showcase">
-          <div class="section-index"><span>01</span> / O PORTFÓLIO</div>
-          <div class="window-composition">
-            <img class="window-backdrop" src="./assets/janela.webp" alt="Vista pela janela do estúdio no fim do dia" data-fallback="window">
-            <div class="window-border" aria-hidden="true"></div>
-            <figure class="work-print work-print-a"><img src="./assets/tatuagem-botanica.webp" alt="Tatuagem botânica de grande formato em blackwork, com linhas delicadas" data-fallback="tattoo"><figcaption>Botânica</figcaption></figure>
-            <figure class="work-print work-print-b"><img src="./assets/tatuagem-libelulas.webp" alt="Tatuagens de libélulas com traços em preto e vermelho" data-fallback="tattoo"><figcaption>Blackwork & detalhes</figcaption></figure>
+    <section class="portfolio-section star-zone" data-star-tone="dark" id="portfolio" aria-labelledby="portfolio-heading">
+      <img class="foliage foliage-portfolio parallax-botanical" src="./assets/botanica-folhas.svg" width="420" height="760" alt="" aria-hidden="true" data-parallax="-20">
+      <div class="container portfolio-layout">
+        <div class="portfolio-visual">
+          <p class="microcopy">01 <span class="slash">/</span> EXPLORE O PORTFÓLIO</p>
+          <div class="window-gallery" aria-roledescription="carrossel" aria-label="Portfólio da Camila" tabindex="0">
+            <div class="window-scene" aria-hidden="true"><img src="./assets/janela.webp" width="1080" height="1440" alt="" loading="lazy" decoding="async"></div>
+            <div class="window-interior">
+              <div class="gallery-track" id="gallery-track" aria-live="off">
+                <figure class="gallery-slide is-active" data-name="Botânica" aria-label="Trabalho 1 de 4" aria-hidden="false"><img src="./assets/tatuagem-botanica.webp" width="1080" height="1440" alt="Tatuagem botânica de folhas finas e sombreado pontilhado sobre as costas" loading="lazy" decoding="async"><figcaption>01 / BOTÂNICA</figcaption></figure>
+                <figure class="gallery-slide" data-name="Libélulas" aria-label="Trabalho 2 de 4" aria-hidden="true" inert><img src="./assets/tatuagem-libelulas.webp" width="1080" height="1440" alt="Duas libélulas tatuadas, uma vermelha e uma preta" loading="lazy" decoding="async"><figcaption>02 / LIBÉLULAS</figcaption></figure>
+                <figure class="gallery-slide" data-name="Blackwork" aria-label="Trabalho 3 de 4" aria-hidden="true" inert><img src="./assets/tatuagem-lagarto.webp" width="1080" height="1411" alt="Lagarto tatuado em blackwork na região do joelho" loading="lazy" decoding="async"><figcaption>03 / BLACKWORK</figcaption></figure>
+                <figure class="gallery-slide" data-name="Ornamental" aria-label="Trabalho 4 de 4" aria-hidden="true" inert><img src="./assets/tatuagem-ornamental.webp" width="1080" height="1440" alt="Tatuagem ornamental em linhas delicadas" loading="lazy" decoding="async"><figcaption>04 / ORNAMENTAL</figcaption></figure>
+              </div>
+            </div>
+            <div class="window-frame" aria-hidden="true"><span class="frame-vertical"></span><span class="frame-horizontal"></span></div>
+            <div class="gallery-controls">
+              <button class="gallery-arrow" id="gallery-prev" type="button" aria-label="Ver trabalho anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5.5-6.5 6.5 6.5 6.5M8 12h13" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+              <span class="gallery-count" id="gallery-count" aria-live="polite" aria-atomic="true">01 <span>/</span> 04</span>
+              <button class="gallery-arrow" id="gallery-next" type="button" aria-label="Ver próximo trabalho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5.5 6.5 6.5-6.5 6.5M16 12H3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            </div>
           </div>
-          <p class="under-image-note">A janela vai receber os movimentos e transições do portfólio na próxima etapa.</p>
+          <p class="gallery-footnote">USE AS SETAS OU DESLIZE PARA PERCORRER OS TRABALHOS.</p>
         </div>
-        <div class="portfolio-copy">
-          <p class="overline">TRAÇO, TEXTURA E NATUREZA</p>
-          <h2 id="portfolio-title">Desenhos com<br><em>personalidade.</em></h2>
-          <p>Linhas orgânicas, composições inspiradas na natureza e o contraste da tinta preta. Uma seleção de trabalhos para conhecer a linguagem da artista.</p>
-          <div class="style-tags"><span>BLACKWORK</span><span>BOTÂNICA</span><span>FINELINE</span></div>
-          <div class="gallery-mini">
-            <figure><img src="./assets/tatuagem-lagarto.webp" alt="Tatuagem de lagarto em blackwork" data-fallback="tattoo"><figcaption>01 / Blackwork</figcaption></figure>
-            <figure><img src="./assets/tatuagem-ornamental.webp" alt="Tatuagem ornamental com traços finos" data-fallback="tattoo"><figcaption>02 / Ornamental</figcaption></figure>
+        <div class="portfolio-text">
+          <p class="kicker">TATUAGEM COMO EXPRESSÃO</p>
+          <h2 id="portfolio-heading">Na pele,<br><em>a natureza</em><br>ganha forma.</h2>
+          <p class="section-description">Do traço fino aos contrastes de tinta preta, cada desenho nasce de referências, intenção e atenção aos detalhes.</p>
+          <div class="styles-row"><span>BLACKWORK</span><span>BOTÂNICA</span><span>FINELINE</span></div>
+          <a class="underlined-link" href="https://www.instagram.com/camila.tattoink/" target="_blank" rel="noopener noreferrer">Ver mais tatuagens no Instagram <span aria-hidden="true">↗</span></a>
+          <div class="portfolio-small-photo"><img src="./assets/tatuagem-libelulas.webp" width="1080" height="1440" alt="Detalhe de tatuagens de libélulas vermelha e preta" loading="lazy" decoding="async"><span>DETALHES QUE CONTAM HISTÓRIAS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="artist-section star-zone" data-star-tone="light" id="artista" aria-labelledby="artist-heading">
+      <img class="foliage foliage-artist parallax-botanical" src="./assets/botanica-ramos.svg" width="550" height="820" alt="" aria-hidden="true" data-parallax="26">
+      <div class="container artist-layout">
+        <div class="artist-intro">
+          <p class="microcopy light">02 <span class="slash">/</span> A TATUADORA</p>
+          <p class="kicker light">POR TRÁS DOS TRAÇOS</p>
+          <h2 id="artist-heading">Oi, eu sou<br><em>a Camila.</em></h2>
+          <p class="section-description">Minha arte encontra inspiração nas formas da natureza, nos traços orgânicos e nos pequenos detalhes que tornam cada desenho único.</p>
+          <p class="editor-note">Apresentação de portfólio: texto a validar com a Camila antes da publicação.</p>
+          <a class="underlined-link light-link" href="#contato">Me conta sua ideia <span aria-hidden="true">↗</span></a>
+        </div>
+        <figure class="artist-image"><img src="./assets/camila-retrato.webp" width="1080" height="1440" alt="Camila segurando um ornamento de estrela próximo ao rosto" loading="lazy" decoding="async"><figcaption><span class="caption-star" aria-hidden="true">✳</span> CAMILA / AURA TATUADA</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="studio-section star-zone" data-star-tone="dark" id="estudio" aria-labelledby="studio-heading">
+      <img class="foliage foliage-studio parallax-botanical" src="./assets/botanica-folhas.svg" width="420" height="760" alt="" aria-hidden="true" data-parallax="-16">
+      <div class="container studio-layout">
+        <div class="studio-intro">
+          <p class="microcopy">03 <span class="slash">/</span> O ESTÚDIO</p>
+          <p class="kicker">UM ESPAÇO QUE ACOLHE</p>
+          <h2 id="studio-heading">Cada detalhe<br>faz <em>parte da arte.</em></h2>
+          <p class="section-description">Plantas, tons naturais, luz suave e um espaço pensado para receber você. Conheça um pouco do Aura Tatuada Studio.</p>
+          <figure class="studio-photo"><img src="./assets/estudio-detalhe.webp" width="1080" height="1350" alt="A tatuadora Camila em frente à parede verde-oliva com o logotipo Aura Tatuada Studio" loading="lazy" decoding="async"><figcaption>AURA TATUADA STUDIO / NOVO HAMBURGO</figcaption></figure>
+        </div>
+        <div class="studio-location" id="localizacao">
+          <p class="microcopy">04 <span class="slash">/</span> VENHA CONHECER</p>
+          <div class="location-header"><h3>Onde a arte acontece.</h3><span aria-hidden="true">↗</span></div>
+          <div class="map-concept" role="img" aria-label="Área reservada ao mapa. Endereço completo do estúdio pendente de confirmação.">
+            <span class="map-area">NOVO HAMBURGO, RS</span><span class="map-pin" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 0c4.6 20.8 11.2 27.4 32 32-20.8 4.6-27.4 11.2-32 32C27.4 43.2 20.8 36.6 0 32 20.8 27.4 27.4 20.8 32 0Z" fill="currentColor"/></svg></span><span class="map-note">LOCALIZAÇÃO EXATA<br>EM CONFIRMAÇÃO</span>
           </div>
-          <a class="text-link" href="https://www.instagram.com/camila.tattoink/" target="_blank" rel="noopener noreferrer">Mais trabalhos da Camila <span aria-hidden="true">↗</span></a>
+          <div class="location-caption"><span><strong>Aura Tatuada Studio</strong><small>Novo Hamburgo — Rio Grande do Sul</small></span><span class="location-pending">MAPA NA ETAPA 3</span></div>
         </div>
       </div>
     </section>
 
-    <section class="artist section" id="artista" aria-labelledby="artist-title">
-      <div class="container artist-grid">
-        <div class="artist-copy">
-          <div class="section-index light"><span>02</span> / A ARTISTA</div>
-          <p class="overline light-overline">POR TRÁS DOS TRAÇOS</p>
-          <h2 id="artist-title">Prazer,<br>sou a <em>Camila.</em></h2>
-          <p>O trabalho de Camila reúne tatuagem autoral, referências botânicas e atenção às formas e aos detalhes.</p>
-          <p class="disclaimer">Texto de apresentação provisório. A trajetória e o processo criativo serão validados com a artista.</p>
-          <a class="button button-outline" href="#contato">Vamos conversar <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="artist-photo-wrap">
-          <img src="./assets/camila-retrato.webp" alt="Retrato da tatuadora Camila segurando uma estrela pontiaguda próxima ao rosto" data-fallback="artist">
-          <div class="artist-photo-caption">CAMILA · ARTISTA RESIDENTE</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="studio section" id="estudio" aria-labelledby="studio-title">
-      <div class="container studio-grid">
-        <div class="studio-copy">
-          <div class="section-index"><span>03</span> / O ESTÚDIO</div>
-          <p class="overline">UM ESPAÇO PARA CRIAR</p>
-          <h2 id="studio-title">Um lugar com<br><em>alma própria.</em></h2>
-          <p>Verde-oliva, plantas, luz natural e detalhes acolhedores. Conheça um pouco do ambiente do Aura Tatuada Studio, em Novo Hamburgo.</p>
-          <div class="studio-detail"><img src="./assets/estudio-detalhe.webp" alt="Recepção do estúdio com logo Aura na parede verde" data-fallback="studio"></div>
-        </div>
-        <div class="location" id="localizacao">
-          <div class="location-header"><span>LOCALIZAÇÃO</span><span>↗</span></div>
-          <div class="map-placeholder" role="img" aria-label="Área reservada para o mapa do estúdio. Endereço completo ainda a confirmar."><div class="map-grid"></div><span class="map-pin">✳</span><span class="map-label">AURA TATUADA<br>MAPA EM PREPARAÇÃO</span></div>
-          <div class="location-footer"><div><strong>Novo Hamburgo — RS</strong><span>Endereço e rota a confirmar</span></div><a href="#contato" aria-label="Ir à seção de contato">↗</a></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="closing" id="contato" aria-labelledby="closing-title">
-      <div class="container closing-content">
-        <div class="section-index light"><span>04</span> / SEU PRÓXIMO DESENHO</div>
-        <h2 id="closing-title">Vamos criar <em>algo seu?</em></h2>
-        <p>Envie sua ideia, referências e a região do corpo em que gostaria de tatuar. A Camila poderá orientar os próximos passos.</p>
-        <a class="button button-cream" href="https://www.instagram.com/camila.tattoink/" target="_blank" rel="noopener noreferrer">Conversar pelo Instagram <span aria-hidden="true">↗</span></a>
-        <p class="disclaimer disclaimer-light">WhatsApp e formulário de orçamento serão integrados após confirmação dos contatos.</p>
+    <section class="contact-section star-zone" data-star-tone="light" id="contato" aria-labelledby="contact-heading">
+      <div class="container contact-center">
+        <p class="microcopy light">05 <span class="slash">/</span> VAMOS CONVERSAR</p>
+        <h2 id="contact-heading">Sua ideia merece<br><em>ganhar forma.</em></h2>
+        <p>Tem uma referência, um desenho ou uma ideia em mente? Entre em contato e converse sobre o seu próximo projeto.</p>
+        <a class="button button-light" href="https://www.instagram.com/camila.tattoink/" target="_blank" rel="noopener noreferrer">Conversar com a Camila <span aria-hidden="true">↗</span></a>
+        <p class="contact-secondary">Instagram como canal provisório · WhatsApp a confirmar</p>
       </div>
     </section>
   </main>
-
-  <footer class="footer">
-    <div class="container footer-top">
-      <div><a class="footer-brand" href="#inicio">aura.</a><span class="footer-subbrand">TATUADA STUDIO</span></div>
-      <div class="footer-links"><a href="#portfolio">Portfólio</a><a href="#artista">Camila</a><a href="#estudio">Estúdio</a><a href="https://www.instagram.com/auratatuada/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>
-    </div>
-    <div class="container footer-bottom"><span>© <span id="year">2026</span> AURA TATUADA STUDIO</span><span>DESIGN & DESENVOLVIMENTO · GUARÁ AGENCY</span></div>
-    <div class="lace-wrap" aria-label="Ornamento gráfico inspirado no cadarço de tênis All Star">
-      <svg class="lace-svg" viewBox="0 0 1440 94" preserveAspectRatio="none" aria-hidden="true"><defs><pattern id="lace" x="0" y="0" width="88" height="92" patternUnits="userSpaceOnUse"><path d="M2 9 84 83M84 9 2 83" fill="none" stroke="#c8b99f" stroke-width="5" stroke-linecap="round"/><circle cx="2" cy="9" r="7" fill="#292d1c" stroke="#c8b99f" stroke-width="3"/><circle cx="84" cy="9" r="7" fill="#292d1c" stroke="#c8b99f" stroke-width="3"/><circle cx="2" cy="83" r="7" fill="#292d1c" stroke="#c8b99f" stroke-width="3"/><circle cx="84" cy="83" r="7" fill="#292d1c" stroke="#c8b99f" stroke-width="3"/></pattern></defs><rect x="0" y="0" width="1440" height="94" fill="url(#lace)"/></svg>
-    </div>
+  <footer class="footer star-zone" data-star-tone="light">
+    <div class="container footer-content"><div><a href="#inicio" class="footer-brand">aura.</a><span class="footer-subtitle">TATUADA STUDIO</span></div><nav aria-label="Links do rodapé"><a href="#portfolio">Portfólio</a><a href="#artista">Camila</a><a href="#estudio">Estúdio</a><a href="https://www.instagram.com/auratatuada/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></nav></div>
+    <div class="container footer-credits"><span>© <span id="year">2026</span> AURA TATUADA STUDIO</span><a href="https://www.guaraagency.com.br/" target="_blank" rel="noopener noreferrer">FEITO PELA GUARÁ AGENCY ↗</a></div>
+    <div class="lace-rail" aria-hidden="true"><svg viewBox="0 0 1200 100" preserveAspectRatio="xMidYMid slice"><defs><pattern id="eyelets" width="80" height="100" patternUnits="userSpaceOnUse"><g fill="none" stroke="#a99f84" stroke-width="2"><circle cx="5" cy="13" r="6"/><circle cx="75" cy="13" r="6"/><circle cx="5" cy="87" r="6"/><circle cx="75" cy="87" r="6"/></g></pattern></defs><rect width="1200" height="100" fill="url(#eyelets)"/><path class="lace-path lace-one" pathLength="1000" d="M0 13 75 87 80 13 155 87 160 13 235 87 240 13 315 87 320 13 395 87 400 13 475 87 480 13 555 87 560 13 635 87 640 13 715 87 720 13 795 87 800 13 875 87 880 13 955 87 960 13 1035 87 1040 13 1115 87 1120 13 1195 87"/><path class="lace-path lace-two" pathLength="1000" d="M0 87 75 13 80 87 155 13 160 87 235 13 240 87 315 13 320 87 395 13 400 87 475 13 480 87 555 13 560 87 635 13 640 87 715 13 720 87 795 13 800 87 875 13 880 87 955 13 960 87 1035 13 1040 87 1115 13 1120 87 1195 13"/></svg></div>
   </footer>
 </body>
 </html>

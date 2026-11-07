@@ -1,35 +1,29 @@
-# Aura Tatuada Studio
+# Aura Tatuada Studio — etapa 2
 
-Site institucional autoral para o **Aura Tatuada Studio**, produzido pela Guará Agency.
+Site estático desenvolvido pela Guará Agency com direção visual baseada nas fotografias reais do Aura Tatuada Studio.
 
-**Estado:** Etapa 1 — estrutura e layout-base responsivo, pronto para revisão. **Ainda não publicado na Cloudflare.**
+## Prévia local
 
-## Como visualizar
+Abra `site/index.html` no navegador, ou execute `python -m http.server 8000` a partir da pasta `site/` e abra `http://localhost:8000`.
 
-1. Abra o diretório `site/`.
-2. Execute `python -m http.server 8000` dentro dessa pasta (ou use um servidor estático equivalente).
-3. Visite `http://localhost:8000`.
+Todos os arquivos são locais, exceto o carregamento opcional de Google Fonts. Não utiliza bibliotecas de animação ou APIs pagas.
 
-A estrutura funciona sem dependências JavaScript. O repositório ainda não contém as fotografias binárias. Para visualizar as fotos reais, extraia o pacote de WebP disponibilizado na conversa na raiz do repositório: os arquivos cairão em `site/assets/`.
+## Implementado
 
-## Etapas
+- Seções: hero, janela/portfólio, tatuadora, estúdio/localização, contato e rodapé.
+- Franja verde-oliva e creme original em SVG no topo.
+- Estrela de quatro pontas percorrendo a página durante o scroll.
+- Ramos botânicos originais em SVG, com efeito parallax de baixo deslocamento.
+- Galeria em janela com 4 fotos, controles anterior/próximo, teclado, swipe e transição; autoplay somente quando visível, desativado quando há preferência por movimento reduzido ou interação manual.
+- Traçado do cadarço do All Star revelado conforme chegada ao rodapé.
+- Layout responsivo, navegação móvel, links com foco visível, alternativas de movimento reduzido, imagens reais em WebP.
 
-1. **Estrutura e linguagem visual:** seções semânticas, CSS responsivo, menu, guia de identidade e posições de fotos/efeitos. **Base entregue.**
-2. **Identidade animada:** franja verde/creme, estrela viajante, plantas em parallax, janela/galeria e cadarço.
-3. **Aprovação e lançamento:** conteúdo real, mapa e contatos verificados, SEO, desempenho, acessibilidade e Cloudflare.
+## Informações pendentes antes do lançamento
 
-Consulte `docs/identidade-visual.md` e `docs/etapas.md`.
+1. Logotipo vetorial original da Aura para substituir a reconstrução textual aproximada.
+2. Confirmação de WhatsApp, Instagram, endereço, biografia e autorização de uso das fotos e tatuagens.
+3. Vídeo real do ambiente, caso a cliente queira vídeo de fundo.
+4. Substituir mapa conceitual pelo Google Maps real após confirmação do endereço.
+5. Aprovação de redação e fotografia pela Camila.
 
-## Referências externas de interação
-
-- https://vila-capininga.vercel.app/ — elemento gráfico percorrendo o scroll.
-- https://antimatter-studio.framer.website/ — folhagens, composição e movimento.
-
-## Antes de publicar
-
-- Obter o logotipo original em vetor para substituir a representação tipográfica provisória.
-- Confirmar biografia, WhatsApp, endereço e Instagram.
-- Confirmar autorização de uso público das fotografias e tatuagens.
-- Sincronizar as imagens otimizadas com o repositório antes do deploy.
-
-Desenvolvimento incremental: alterações visuais devem ser validadas antes de passar para a próxima etapa.
+**Sem deploy Cloudflare nesta etapa.**
