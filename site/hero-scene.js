@@ -13,7 +13,6 @@
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
   const mutedIcon='<path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6m0-6-5 6"/>';
   const soundIcon='<path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 9a5 5 0 0 1 0 6M18 6a9 9 0 0 1 0 12"/>';
-  let visible=true;
   let userStarted=false;
   let preferredSound=true;
   let failed=false;
@@ -41,7 +40,7 @@
   }
 
   async function start(){
-    if(failed||!visible||document.hidden||(reduced.matches&&!userStarted))return;
+    if(failed||document.hidden||(reduced.matches&&!userStarted))return;
     const current=++sequence;
     video.muted=!preferredSound;
     try{
@@ -75,7 +74,7 @@
   });
 
   function unlockFromGesture(event){
-    if(failed||!preferredSound||!visible||document.hidden||!video.muted||reduced.matches)return;
+    if(failed||!preferredSound||document.hidden||!video.muted||reduced.matches)return;
     if(event.target instanceof Element && event.target.closest('#aura-hero-sound'))return;
     userStarted=true;
     start();
@@ -97,23 +96,18 @@
     sync();
   });
 
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(([entry])=>{
-      visible=entry.isIntersecting;
-      if(visible)start();
-      else pauseAway();
-    },{threshold:.12}).observe(hero);
-  }
+  // O vídeo e a música continuam durante todo o scroll.
+  // Uma aba oculta continua podendo pausar por economia/expectativa do usuário.
   document.addEventListener('visibilitychange',()=>{
     if(document.hidden)pauseAway();
-    else if(visible)start();
+    else start();
   });
   reduced.addEventListener('change',()=>{
     if(reduced.matches){
       pauseAway();
       userStarted=false;
       video.classList.remove('is-user-playing');
-    }else if(visible)start();
+    }else start();
   });
 
   sync();

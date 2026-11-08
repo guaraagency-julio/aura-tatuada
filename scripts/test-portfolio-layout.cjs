@@ -58,6 +58,25 @@ const {chromium}=require('playwright');
     assert(data.gap>=0,'Estrela acima demais do U: '+selector+' '+JSON.stringify(data));
     console.log('PASS estrela alinhada: '+selector+' gap='+data.gap.toFixed(2));
   }
+  // Regressão: não pausar vídeo/música ao abandonar visualmente o hero.
+  const audioPage=await browser.newPage({viewport:{width:1366,height:900},reducedMotion:'no-preference'});
+  await audioPage.addInitScript(()=>{
+    const oldPause=HTMLMediaElement.prototype.pause;
+    window.__aura_pauses=0;
+    HTMLMediaElement.prototype.pause=function(...args){
+      if(this.id==='aura-hero-video')window.__aura_pauses++;
+      return oldPause.apply(this,args);
+    };
+  });
+  await audioPage.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
+  await audioPage.waitForTimeout(300);
+  const before=await audioPage.evaluate(()=>window.__aura_pauses);
+  await audioPage.evaluate(()=>window.scrollTo(0,document.body.scrollHeight));
+  await audioPage.waitForTimeout(650);
+  const after=await audioPage.evaluate(()=>window.__aura_pauses);
+  assert.equal(after,before,'Rolar a página não deve chamar video.pause()');
+  console.log('PASS video nao pausa ao navegar ate o final');
+  await audioPage.close();
   const icon=await page.locator('link[rel="icon"]').getAttribute('href');
   assert(icon&&icon.includes('favicon.svg'),'Favicon da estrela ausente');
   await page.close();
