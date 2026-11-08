@@ -1,4 +1,4 @@
-/* Hero de vídeo com poster fotográfico de fallback e som ativado somente por gesto. */
+/* Hero de vídeo com poster fotográfico. Tenta áudio ao abrir; respeita bloqueios de autoplay. */
 .hero{isolation:isolate}
 .hero-background-video{position:absolute;inset:0;width:100%;height:100%;z-index:-1;object-fit:cover;object-position:center;pointer-events:none;opacity:0;transition:opacity .65s ease-out;background:transparent}
 .hero-background-video.is-playing{opacity:1}

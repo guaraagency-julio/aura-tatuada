@@ -459,3 +459,22 @@ body.aura-lux-on .portfolio-section .style-filter.aura-ux-pressable{filter:none}
     max-width:420px;
   }
 }
+
+
+/* Aura — ajuste fino de identidade visual (referência da placa real).
+   A estrela fica imediatamente acima da letra "u" em ambos os tamanhos.
+   Ancoragem relativa ao u; evita deslocamentos em telas menores. */
+.brand-name .brand-u .brand-star {
+  left:50%;
+  top:-.05em;
+  width:.36em;
+  height:.36em;
+  transform:translateX(-50%);
+}
+.footer-brand .brand-u .brand-star {
+  left:50%;
+  top:-.04em;
+  width:.36em;
+  height:.36em;
+  transform:translateX(-50%);
+}

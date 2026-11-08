@@ -36,6 +36,28 @@ const {chromium}=require('playwright');
    assert.equal(actual,expected,'Categoria '+category);
    console.log('PASS filtro '+category+': '+actual+' fotografias');
   }
+  const thumbnail=page.locator('.portfolio-small-photo img');
+  await thumbnail.scrollIntoViewIfNeeded();
+  await page.waitForFunction(()=>{
+    const img=document.querySelector('.portfolio-small-photo img');
+    return img && img.complete && img.naturalWidth>0;
+  });
+  assert((await thumbnail.getAttribute('src')).includes('pezinho-bebe.webp'),'Miniatura do pezinho não encontrada');
+  console.log('PASS miniatura do pezinho carregada');
+  const video=page.locator('#aura-hero-video');
+  assert(!(await video.getAttribute('muted')),'Video não deve iniciar com atributo muted');
+  assert.equal(await page.locator('#aura-hero-sound').count(),1,'Controle de som indisponível');
+  console.log('PASS preferência de áudio ligada; controle de som presente');
+  for(const selector of ['.brand-name .brand-u .brand-star','.footer-brand .brand-u .brand-star']){
+    const data=await page.locator(selector).evaluate(el=>{
+      const u=el.closest('.brand-u').getBoundingClientRect();
+      const s=el.getBoundingClientRect();
+      return {dx:Math.abs((u.left+u.width/2)-(s.left+s.width/2)),gap:s.bottom-u.top};
+    });
+    assert(data.dx<3,'Estrela não centrada no U: '+selector+' '+JSON.stringify(data));
+    assert(data.gap>=0,'Estrela acima demais do U: '+selector+' '+JSON.stringify(data));
+    console.log('PASS estrela alinhada: '+selector+' gap='+data.gap.toFixed(2));
+  }
   const icon=await page.locator('link[rel="icon"]').getAttribute('href');
   assert(icon&&icon.includes('favicon.svg'),'Favicon da estrela ausente');
   await page.close();

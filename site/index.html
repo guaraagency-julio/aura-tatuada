@@ -19,15 +19,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="preload" href="./assets/estudio-principal.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="./styles.css?v=20261107-portfolio-gridfix">
+  <link rel="stylesheet" href="./styles.css?v=20261108-logo">
   <link rel="stylesheet" href="./light-system.css">
-  <link rel="stylesheet" href="./hero-scene.css">
+  <link rel="stylesheet" href="./hero-scene.css?v=20261108-audio">
   <link rel="stylesheet" href="./title-relief.css">
   <link rel="stylesheet" href="./studio-panel.css">
   <link rel="stylesheet" href="./interactive-relief.css">
   <script src="./main.js?v=20261107-portfolio3d" defer></script>
   <script src="./light-system.js" defer></script>
-  <script src="./hero-scene.js" defer></script>
+  <script src="./hero-scene.js?v=20261108-audio" defer></script>
   <script src="./title-relief.js" defer></script>
   <script src="./studio-panel.js" defer></script>
   <script src="./interactive-relief.js?v=20261107-portfolio3d" defer></script>
@@ -64,7 +64,7 @@
   <main id="conteudo">
     <section class="hero star-zone" data-star-tone="light" aria-labelledby="hero-heading">
       <img class="hero-photo" src="./assets/estudio-principal.webp" width="1080" height="1350" alt="Recepção do Aura Tatuada Studio, com parede verde-oliva, luz natural e mobiliário de madeira" fetchpriority="high">
-      <video id="aura-hero-video" class="hero-background-video" autoplay muted playsinline loop preload="metadata" poster="./assets/estudio-principal.webp" aria-hidden="true" tabindex="-1">
+      <video id="aura-hero-video" class="hero-background-video" autoplay playsinline loop preload="metadata" poster="./assets/estudio-principal.webp" aria-hidden="true" tabindex="-1">
         <source src="./assets/hero-background.mp4" type="video/mp4">
       </video>
       <div class="hero-vignette" aria-hidden="true"></div>
@@ -75,9 +75,9 @@
         <div class="hero-commands"><a class="button button-light" href="#portfolio">Explorar trabalhos <span aria-hidden="true">↗</span></a><span class="micro-hint">TRAÇOS AUTORAIS / 2026</span></div>
         <div class="hero-bottom"><span>ESTÚDIO AURA TATUADA</span><a href="#portfolio">ROLE PARA CONHECER <span aria-hidden="true">↓</span></a></div>
       </div>
-          <button id="aura-hero-sound" class="hero-video-sound" type="button" aria-label="Ativar som do vídeo" aria-pressed="false">
+          <button id="aura-hero-sound" class="hero-video-sound" type="button" aria-label="Desativar som do vídeo" aria-pressed="true">
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
-        <span class="sound-label">Ativar som</span>
+        <span class="sound-label">Desativar som</span>
       </button>
     </section>
 
@@ -126,7 +126,7 @@
             <button type="button" class="style-filter" data-category="fineline" aria-pressed="false">FINELINE</button>
           </div>
           <a class="underlined-link" href="https://www.instagram.com/auratatuada/" target="_blank" rel="noopener noreferrer">Ver mais tatuagens no Instagram <span aria-hidden="true">↗</span></a>
-          <div class="portfolio-small-photo"><img src="./assets/tatuagem-libelulas.webp" width="1080" height="1440" alt="Detalhe de tatuagens de libélulas vermelha e preta" loading="lazy" decoding="async"><span>DETALHES QUE CONTAM HISTÓRIAS</span></div>
+          <div class="portfolio-small-photo"><img src="./assets/pezinho-bebe.webp" width="200" height="355" alt="Tatuagem delicada de um pezinho de bebê, feita como homenagem ao nascimento de uma criança" loading="lazy" decoding="async"><span>DETALHES QUE CONTAM HISTÓRIAS</span></div>
         </div>
       </div>
     </section>
