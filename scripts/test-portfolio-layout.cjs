@@ -76,6 +76,35 @@ const {chromium}=require('playwright');
   const after=await audioPage.evaluate(()=>window.__aura_pauses);
   assert.equal(after,before,'Rolar a página não deve chamar video.pause()');
   console.log('PASS video nao pausa ao navegar ate o final');
+  // Som e luz ficam juntos, fixos e visíveis ao chegar ao rodapé.
+  async function assertControlsInViewport(p,width) {
+    const result=await p.evaluate(()=>{
+      const group=document.querySelector('.aura-floating-controls');
+      const sound=document.querySelector('#aura-hero-sound');
+      const light=document.querySelector('.aura-lux-toggle');
+      if(!group||!sound||!light)return {missing:true};
+      const get=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height}};
+      return {
+        grouped:sound.parentElement===group&&light.parentElement===group,
+        fixed:getComputedStyle(group).position==='fixed',
+        group:get(group),sound:get(sound),light:get(light),
+        soundHidden:getComputedStyle(sound).visibility==='hidden'
+      };
+    });
+    assert(!result.missing&&result.grouped&&result.fixed,'Controles devem ficar agrupados em posição fixa: '+width);
+    assert(result.sound.width>=43&&result.light.width>=43&&!result.soundHidden,'Controles não visíveis em '+width);
+    assert(result.sound.right<=result.light.left+1,'Som deve ficar à esquerda da luz em '+width);
+    assert(result.sound.left>=0&&result.light.right<=width+1,'Controles fora da viewport em '+width);
+    assert(result.sound.bottom<=900+1&&result.light.bottom<=900+1,'Controles fora da altura da tela em '+width);
+    console.log('PASS controles flutuantes de som e luz em '+width+'px');
+  }
+  await assertControlsInViewport(audioPage,1366);
+  const mobileAudioPage=await browser.newPage({viewport:{width:390,height:900},reducedMotion:'no-preference'});
+  await mobileAudioPage.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
+  await mobileAudioPage.evaluate(()=>window.scrollTo(0,document.body.scrollHeight));
+  await mobileAudioPage.waitForTimeout(200);
+  await assertControlsInViewport(mobileAudioPage,390);
+  await mobileAudioPage.close();
   await audioPage.close();
   const icon=await page.locator('link[rel="icon"]').getAttribute('href');
   assert(icon&&icon.includes('favicon.svg'),'Favicon da estrela ausente');

@@ -21,7 +21,7 @@
   <link rel="preload" href="./assets/estudio-principal.webp" as="image" type="image/webp">
   <link rel="stylesheet" href="./styles.css?v=20261108-logo">
   <link rel="stylesheet" href="./light-system.css">
-  <link rel="stylesheet" href="./hero-scene.css?v=20261108-audio">
+  <link rel="stylesheet" href="./hero-scene.css?v=20261108-floating-sound">
   <link rel="stylesheet" href="./title-relief.css">
   <link rel="stylesheet" href="./studio-panel.css">
   <link rel="stylesheet" href="./interactive-relief.css">
@@ -75,10 +75,7 @@
         <div class="hero-commands"><a class="button button-light" href="#portfolio">Explorar trabalhos <span aria-hidden="true">↗</span></a><span class="micro-hint">TRAÇOS AUTORAIS / 2026</span></div>
         <div class="hero-bottom"><span>ESTÚDIO AURA TATUADA</span><a href="#portfolio">ROLE PARA CONHECER <span aria-hidden="true">↓</span></a></div>
       </div>
-          <button id="aura-hero-sound" class="hero-video-sound" type="button" aria-label="Desativar som do vídeo" aria-pressed="true">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
-        <span class="sound-label">Desativar som</span>
-      </button>
+
     </section>
 
     <section class="portfolio-section star-zone" data-star-tone="light" id="portfolio" aria-labelledby="portfolio-heading">
@@ -203,5 +200,11 @@
     <div class="container footer-credits"><span>© <span id="year">2026</span> AURA TATUADA STUDIO · R. JOAQUIM NABUCO, 1044</span><a href="https://www.guaraagency.com.br/" target="_blank" rel="noopener noreferrer">FEITO PELA GUARÁ AGENCY ↗</a></div>
 
   </footer>
+  <div class="aura-floating-controls" role="group" aria-label="Controles de som e iluminação">
+    <button id="aura-hero-sound" class="hero-video-sound" type="button" aria-label="Desativar som do vídeo" aria-pressed="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
+        <span class="sound-label">Desativar som</span>
+      </button>
+  </div>
 </body>
 </html>

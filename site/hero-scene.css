@@ -10,3 +10,49 @@
 .hero-video-sound:disabled{opacity:.5;cursor:not-allowed}
 @media(max-width:560px){.hero-video-sound{right:15px;bottom:80px;padding:11px;min-width:44px;min-height:44px}.hero-video-sound .sound-label{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}}
 @media(prefers-reduced-motion:reduce){.hero-background-video{transition:none}.hero-background-video:not(.is-user-playing){opacity:0!important}}
+
+/* Os controles de áudio e luz permanecem juntos enquanto a página rola.
+   O botão de som continua ligado ao vídeo original; nenhuma mídia duplicada. */
+.aura-floating-controls {
+  position:fixed;
+  z-index:85;
+  right:18px;
+  bottom:18px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+  max-width:calc(100vw - 24px);
+}
+.aura-floating-controls .hero-video-sound,
+.aura-floating-controls .aura-lux-toggle {
+  position:relative;
+  inset:auto;
+  right:auto;
+  bottom:auto;
+  margin:0;
+  flex:0 0 auto;
+}
+@media(max-width:700px) {
+  .aura-floating-controls {
+    right:12px;
+    bottom:max(12px,env(safe-area-inset-bottom));
+    gap:8px;
+  }
+  .aura-floating-controls .hero-video-sound {
+    width:44px;
+    height:44px;
+    min-width:44px;
+    min-height:44px;
+    padding:0;
+    border-radius:50%;
+  }
+  .aura-floating-controls .hero-video-sound .sound-label {
+    position:absolute!important;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+  }
+}
