@@ -478,3 +478,6 @@ body.aura-lux-on .portfolio-section .style-filter.aura-ux-pressable{filter:none}
   height:.36em;
   transform:translateX(-50%);
 }
+
+/* Mantém os ícones de redes sociais lado a lado em telas estreitas. */
+@media(max-width:370px){.header-row{gap:8px}.nav-actions{gap:2px}}
