@@ -105,6 +105,27 @@ const {chromium}=require('playwright');
   await mobileAudioPage.waitForTimeout(200);
   await assertControlsInViewport(mobileAudioPage,390);
   await mobileAudioPage.close();
+  // O primeiro toque em dispositivos móveis deve liberar o som caso o navegador
+  // tenha iniciado o vídeo mudo por sua política de autoplay.
+  const gesturePage=await browser.newPage({viewport:{width:390,height:850},hasTouch:true,isMobile:true});
+  await gesturePage.addInitScript(()=>{
+    HTMLMediaElement.prototype.play=function(){
+      // Simula uma reprodução já autorizada: testa a preferência e os eventos
+      // sem depender das políticas variáveis de áudio em CI.
+      return Promise.resolve();
+    };
+  });
+  await gesturePage.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
+  await gesturePage.evaluate(()=>{
+    const v=document.querySelector('#aura-hero-video');
+    v.muted=true; // simula fallback da política de autoplay
+  });
+  await gesturePage.locator('body').dispatchEvent('pointerup',{pointerType:'touch'});
+  await gesturePage.waitForTimeout(100);
+  assert.equal(await gesturePage.locator('#aura-hero-video').evaluate(el=>el.muted),false,
+    'Primeiro toque deve tentar restaurar som quando a preferência está ligada');
+  console.log('PASS som preferencialmente ligado após primeiro toque no mobile');
+  await gesturePage.close();
   await audioPage.close();
   const icon=await page.locator('link[rel="icon"]').getAttribute('href');
   assert(icon&&icon.includes('favicon.svg'),'Favicon da estrela ausente');

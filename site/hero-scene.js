@@ -14,6 +14,8 @@
   const mutedIcon='<path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6m0-6-5 6"/>';
   const soundIcon='<path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 9a5 5 0 0 1 0 6M18 6a9 9 0 0 1 0 12"/>';
   let userStarted=false;
+  // Preferência padrão: som ligado (o navegador pode exigir interação).
+  // O usuário pode desligar e reativar somente pelo botão flutuante.
   let preferredSound=true;
   let failed=false;
   let sequence=0;
@@ -79,9 +81,19 @@
     userStarted=true;
     start();
   }
-  document.addEventListener('pointerdown',unlockFromGesture,{passive:true});
+  // A primeira interação pode liberar áudio quando o navegador bloqueou o autoplay.
+  // Em telas de toque, a ativação do usuário acontece ao soltar o dedo (pointerup/touchend).
+  document.addEventListener('pointerdown',e=>{
+    if(e.pointerType==='mouse')unlockFromGesture(e);
+  },{passive:true});
+  document.addEventListener('pointerup',e=>{
+    if(e.pointerType==='touch'||e.pointerType==='pen')unlockFromGesture(e);
+  },{passive:true});
+  document.addEventListener('touchend',unlockFromGesture,{passive:true});
   document.addEventListener('keydown',e=>{
-    if(e.key==='Enter'||e.key===' '){unlockFromGesture(e);}
+    if(!e.repeat&&!e.ctrlKey&&!e.altKey&&!e.metaKey&&e.key!=='Escape'){
+      unlockFromGesture(e);
+    }
   });
 
   video.addEventListener('playing',()=>{
